@@ -1,0 +1,10 @@
+[
+  {
+    "listing": "/index.html",
+    "items": [
+      "/posts/quarto-setup/index.html",
+      "/posts/thinking-in-systems/index.html",
+      "/posts/hello-world/index.html"
+    ]
+  }
+]

@@ -1,0 +1,40 @@
+---
+title: "Thinking in Systems"
+description: "Why the best debugging skill isn't knowing the codebase — it's knowing how to think about moving parts."
+date: "2026-01-28"
+categories: [engineering, thinking]
+---
+
+There's a kind of developer who can walk into any codebase and, within an hour, have a mental model good enough to find bugs reliably. They don't have memorized APIs or encyclopedic language knowledge. What they have is a way of thinking about *systems*.
+
+## What a system is
+
+A system is anything with:
+
+- **State** — things that can change
+- **Transitions** — rules for how state changes
+- **Boundaries** — what's inside vs. outside
+
+Your database is a system. Your HTTP server is a system. Your deployment pipeline is a system. A distributed microservice architecture is a system of systems.
+
+When something breaks, the question is always: *which state changed unexpectedly, and which transition caused it?*
+
+## The trick
+
+Most debugging goes wrong because people look at the symptoms directly. They search for the error message, find a Stack Overflow post from 2018, apply the suggested fix, and move on if it works.
+
+That approach fails on novel bugs — and increasingly, the easy bugs are already fixed.
+
+The better approach: ignore the error message first. Ask instead:
+
+1. What was the expected state at this point?
+2. What is the actual state?
+3. Where did those two diverge?
+
+Once you've identified the divergence, the cause is usually nearby.
+
+## Building the habit
+
+The habit is just asking "what changed?" before "what's the error?". It sounds obvious but takes practice to default to.
+
+Write down your mental model before you start investigating. It forces you to make your assumptions explicit — and explicit assumptions are much easier to test.

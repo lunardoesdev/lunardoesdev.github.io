@@ -1,0 +1,12 @@
+---
+title: "Posts"
+page-layout: article
+toc: false
+listing:
+  contents: posts
+  sort: "date desc"
+  template: listing.ejs
+  date-format: "MMM D, YYYY"
+  fields: [date, title, description, categories, reading-time]
+  feed: true
+---

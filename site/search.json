@@ -1,0 +1,100 @@
+[
+  {
+    "objectID": "posts/thinking-in-systems/index.html",
+    "href": "posts/thinking-in-systems/index.html",
+    "title": "Thinking in Systems",
+    "section": "",
+    "text": "There’s a kind of developer who can walk into any codebase and, within an hour, have a mental model good enough to find bugs reliably. They don’t have memorized APIs or encyclopedic language knowledge. What they have is a way of thinking about systems."
+  },
+  {
+    "objectID": "posts/thinking-in-systems/index.html#what-a-system-is",
+    "href": "posts/thinking-in-systems/index.html#what-a-system-is",
+    "title": "Thinking in Systems",
+    "section": "What a system is",
+    "text": "What a system is\nA system is anything with:\n\nState — things that can change\nTransitions — rules for how state changes\nBoundaries — what’s inside vs. outside\n\nYour database is a system. Your HTTP server is a system. Your deployment pipeline is a system. A distributed microservice architecture is a system of systems.\nWhen something breaks, the question is always: which state changed unexpectedly, and which transition caused it?"
+  },
+  {
+    "objectID": "posts/thinking-in-systems/index.html#the-trick",
+    "href": "posts/thinking-in-systems/index.html#the-trick",
+    "title": "Thinking in Systems",
+    "section": "The trick",
+    "text": "The trick\nMost debugging goes wrong because people look at the symptoms directly. They search for the error message, find a Stack Overflow post from 2018, apply the suggested fix, and move on if it works.\nThat approach fails on novel bugs — and increasingly, the easy bugs are already fixed.\nThe better approach: ignore the error message first. Ask instead:\n\nWhat was the expected state at this point?\nWhat is the actual state?\nWhere did those two diverge?\n\nOnce you’ve identified the divergence, the cause is usually nearby."
+  },
+  {
+    "objectID": "posts/thinking-in-systems/index.html#building-the-habit",
+    "href": "posts/thinking-in-systems/index.html#building-the-habit",
+    "title": "Thinking in Systems",
+    "section": "Building the habit",
+    "text": "Building the habit\nThe habit is just asking “what changed?” before “what’s the error?”. It sounds obvious but takes practice to default to.\nWrite down your mental model before you start investigating. It forces you to make your assumptions explicit — and explicit assumptions are much easier to test."
+  },
+  {
+    "objectID": "posts/hello-world/index.html",
+    "href": "posts/hello-world/index.html",
+    "title": "Hello, World",
+    "section": "",
+    "text": "Every blog needs a first post. This is mine."
+  },
+  {
+    "objectID": "posts/hello-world/index.html#what-this-is",
+    "href": "posts/hello-world/index.html#what-this-is",
+    "title": "Hello, World",
+    "section": "What this is",
+    "text": "What this is\nI’ve been meaning to write publicly for a while. Not to build an audience or grow a brand — just to have a place to put thoughts that are too long for a comment thread and too short to be a proper article.\nThe topics will mostly be code-adjacent: things I’ve built, problems I’ve run into, approaches I find interesting. Occasionally something further afield."
+  },
+  {
+    "objectID": "posts/hello-world/index.html#what-to-expect",
+    "href": "posts/hello-world/index.html#what-to-expect",
+    "title": "Hello, World",
+    "section": "What to expect",
+    "text": "What to expect\nPosts here will be short and irregular. I’d rather write something small and honest than wait for a “real” post that never comes.\nIf something here is wrong or you have a better way, feel free to reach out.\n# Start somewhere\nprint(\"Hello, world.\")\nThat’s it. More soon."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Hi, I’m a developer who writes about code, systems, and the craft of building things.\nI mostly care about making software that works well and is pleasant to work with. This blog is where I put notes, half-formed ideas, and things I want to remember — written down so they’re useful to more than just me.\n\nFind me on GitHub."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Posts",
+    "section": "",
+    "text": "Feb 10, 2026 ·1 min\n\n\nThis Blog's Setup\n\n\nHow this blog is built: Quarto, custom listing template, full-text search, and a few CSS tweaks.\n\n\n\nmeta\n\n\ntooling\n\n\n\n\n\nJan 28, 2026 ·2 min\n\n\nThinking in Systems\n\n\nWhy the best debugging skill isn't knowing the codebase — it's knowing how to think about moving parts.\n\n\n\nengineering\n\n\nthinking\n\n\n\n\n\nJan 15, 2026 ·1 min\n\n\nHello, World\n\n\nFirst post — what this blog is for and what to expect.\n\n\n\nmeta\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/quarto-setup/index.html",
+    "href": "posts/quarto-setup/index.html",
+    "title": "This Blog’s Setup",
+    "section": "",
+    "text": "Since this is a developer blog, it seems right to write about how it’s built."
+  },
+  {
+    "objectID": "posts/quarto-setup/index.html#the-stack",
+    "href": "posts/quarto-setup/index.html#the-stack",
+    "title": "This Blog’s Setup",
+    "section": "The stack",
+    "text": "The stack\n\nQuarto — static site generator with first-class support for code, notebooks, and technical writing\nGitHub Pages — hosting\nCustom CSS — theme overrides on top of Quarto’s cosmo base\n\nNo JavaScript frameworks, no build pipeline, no node_modules folder of shame."
+  },
+  {
+    "objectID": "posts/quarto-setup/index.html#why-quarto",
+    "href": "posts/quarto-setup/index.html#why-quarto",
+    "title": "This Blog’s Setup",
+    "section": "Why Quarto",
+    "text": "Why Quarto\nI wanted something that handles code blocks well by default, can render math if I ever need it, and doesn’t require me to fight the tooling to write a simple post.\nQuarto fits. It’s opinionated enough to get out of the way, but extensible enough that I could build exactly the listing style I wanted."
+  },
+  {
+    "objectID": "posts/quarto-setup/index.html#the-listing-page",
+    "href": "posts/quarto-setup/index.html#the-listing-page",
+    "title": "This Blog’s Setup",
+    "section": "The listing page",
+    "text": "The listing page\nQuarto’s default post listing moves the title around depending on whether there’s a thumbnail image. I didn’t want that. A custom EJS template gives full control over the HTML:\nlisting:\n  template: listing.ejs\n  fields: [date, title, description, categories]\nThe template is about 20 lines of straightforward HTML with EJS interpolation."
+  },
+  {
+    "objectID": "posts/quarto-setup/index.html#search",
+    "href": "posts/quarto-setup/index.html#search",
+    "title": "This Blog’s Setup",
+    "section": "Search",
+    "text": "Search\nFull-text search comes for free with Quarto — just set type: overlay in the search config and it indexes all your content automatically using Fuse.js.\nsearch:\n  location: navbar\n  type: overlay\nThat’s most of it. The rest is CSS."
+  }
+]

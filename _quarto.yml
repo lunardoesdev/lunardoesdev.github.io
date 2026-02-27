@@ -1,0 +1,34 @@
+project:
+  type: website
+  output-dir: site
+
+website:
+  title: "Lunar Developer"
+  description: "Notes on code, systems, and building software."
+  site-url: "https://lunardoesdev.github.io"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Posts
+      - href: about.qmd
+        text: About
+    right:
+      - icon: rss
+        href: index.xml
+        aria-label: RSS Feed
+  search:
+    location: navbar
+    type: overlay
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: false
+#    highlight-style: github-dark
+#    code-copy: true
+#    link-external-newwindow: true
+    fontsize: 16pt
+#    linestretch: 1.7
+#    grid:
+#      body-width: 720px

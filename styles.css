@@ -1,0 +1,342 @@
+/* ============================================================
+   Variables
+   ============================================================ */
+
+:root {
+  --accent:        #6366f1;
+  --accent-hover:  #4f46e5;
+  --accent-subtle: #eef2ff;
+  --tag-bg:        #ede9fe;
+  --tag-color:     #6d28d9;
+  --text-base:     #111827;
+  --text-muted:    #6b7280;
+  --text-faint:    #9ca3af;
+  --border:        #e5e7eb;
+  --bg-subtle:     #f9fafb;
+  --mono: 'JetBrains Mono', 'Fira Code', ui-monospace, 'Cascadia Code', Consolas, monospace;
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+
+body {
+  color: var(--text-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================================
+   Navbar
+   ============================================================ */
+
+.navbar {
+  /* border-bottom: 1px solid var(--border); */
+  box-shadow: none !important;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+}
+
+.navbar-brand {
+  /* font-weight: 800; */
+  letter-spacing: -0.03em;
+  color: var(--text-base) !important;
+}
+
+.navbar-brand:hover {
+  color: var(--accent) !important;
+}
+
+.navbar-nav .nav-link {
+  color: var(--text-muted) !important;
+  transition: color 0.15s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: var(--accent) !important;
+}
+
+/* Align search icon and compact nav icons (RSS) to the same vertical center */
+.navbar #quarto-search,
+.navbar .nav-item.compact .nav-link {
+  display: flex;
+  align-items: center;
+  padding-top: 0;
+  padding-bottom: 0;
+  line-height: 1;
+}
+
+/* ============================================================
+   Page title (listing & regular pages)
+   ============================================================ */
+
+h1.title {
+  /* font-weight: 800; */
+  letter-spacing: -0.04em;
+  color: var(--text-base);
+  text-align: center;
+}
+
+.subtitle.lead {
+  color: var(--text-muted);
+  margin-top: -0.25rem;
+}
+
+/* ============================================================
+   Post listing  (rendered via listing.ejs)
+   ============================================================ */
+
+.post-list {
+  margin-top: 2rem;
+}
+
+.post-item {
+  position: relative;
+  padding: 2rem 0;
+  /* border-bottom: 1px solid var(--border); */
+}
+
+.post-item:first-child {
+  padding-top: 0.25rem;
+}
+
+.post-item:last-child {
+  /* border-bottom: none; */
+  padding-bottom: 0;
+}
+
+/* Title link — stretched-link makes the whole card clickable */
+.post-title a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.post-item:hover .post-title a,
+.post-item:focus-within .post-title a {
+  color: var(--accent);
+}
+
+/* --- Meta line (date · reading time) --- */
+
+/* Pandoc wraps the inline elements in a <p>; flex on both handles it */
+.post-meta-line,
+.post-meta-line p {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.post-date,
+.post-reading-time,
+.meta-sep {
+  color: var(--text-base);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Quarto adds anchor-link icons to headings — suppress them in the listing */
+.post-item .post-title a.anchorjs-link {
+  display: none;
+}
+
+/* --- Title --- */
+
+.post-title {
+  /* font-weight: 700; */
+  line-height: 1.25;
+  margin: 0 0 0.5rem;
+  color: var(--text-base);
+  letter-spacing: -0.025em;
+  transition: color 0.15s ease;
+}
+
+/* --- Description --- */
+
+.post-description {
+  color: var(--text-base);
+  margin: 0 0 0.75rem;
+}
+
+/* --- Category tags --- */
+
+.post-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.post-category {
+  /* font-weight: 600; */
+  background: var(--tag-bg);
+  color: var(--tag-color);
+  padding: 0.2rem 0.6rem;
+  border-radius: 100px;
+  letter-spacing: 0.01em;
+  text-transform: lowercase;
+}
+
+/* ============================================================
+   Post / Article page
+   ============================================================ */
+
+/* Title block */
+.quarto-title-block .title {
+  /* font-weight: 800; */
+  letter-spacing: -0.04em;
+  line-height: 1.2;
+}
+
+/* Metadata row (date, author, etc.) */
+.quarto-title-meta-heading {
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.quarto-title-meta-contents {
+  color: var(--text-muted);
+}
+
+/* Category pills on post pages */
+.quarto-categories .quarto-category {
+  background: var(--tag-bg) !important;
+  color: var(--tag-color) !important;
+  border-color: transparent !important;
+  /* font-weight: 600 !important; */
+  padding: 0.2rem 0.6rem !important;
+  border-radius: 100px !important;
+  text-transform: lowercase;
+}
+
+/* Article headings */
+article h2 {
+  /* font-weight: 700; */
+  letter-spacing: -0.025em;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.4rem;
+  /* border-bottom: 1px solid var(--border); */
+}
+
+article h3 {
+  /* font-weight: 700; */
+  letter-spacing: -0.015em;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ============================================================
+   Code
+   ============================================================ */
+
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--mono);
+}
+
+/* Inline code */
+:not(pre) > code {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: 0.25rem;
+  padding: 0.1em 0.35em;
+  color: #6d28d9;
+  word-break: break-word;
+}
+
+/* Code blocks */
+pre.sourceCode,
+div.sourceCode pre {
+  border-radius: 0.5rem;
+}
+
+/* ============================================================
+   Table of contents (sidebar on post pages)
+   ============================================================ */
+
+#TOC {
+  border-left: 2px solid var(--border);
+  padding-left: 1rem;
+}
+
+* {
+  font-weight: 500;
+}
+
+#TOC .active > a {
+  color: var(--accent);
+  /* font-weight: 600; */
+}
+
+#TOC a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+#TOC a:hover {
+  color: var(--accent);
+}
+
+/* ============================================================
+   Search overlay
+   ============================================================ */
+
+.aa-Panel {
+  border-radius: 0.5rem !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15) !important;
+  border: 1px solid var(--border) !important;
+}
+
+.aa-ItemIcon {
+  color: var(--accent) !important;
+}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+
+.nav-footer {
+  border-top: 1px solid var(--border);
+  color: var(--text-faint);
+  padding: 1.25rem 0;
+}
+
+.nav-footer a {
+  color: var(--text-muted);
+}
+
+.nav-footer a:hover {
+  color: var(--accent);
+}
+
+/* ============================================================
+   Utility / misc
+   ============================================================ */
+
+hr {
+  border-color: var(--border);
+  opacity: 1;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+
+@media (max-width: 576px) {
+  .post-item {
+    padding: 1.5rem 0;
+  }
+}

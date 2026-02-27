@@ -1,0 +1,46 @@
+---
+title: "This Blog's Setup"
+description: "How this blog is built: Quarto, custom listing template, full-text search, and a few CSS tweaks."
+date: "2026-02-10"
+categories: [meta, tooling]
+---
+
+Since this is a developer blog, it seems right to write about how it's built.
+
+## The stack
+
+- **[Quarto](https://quarto.org)** — static site generator with first-class support for code, notebooks, and technical writing
+- **GitHub Pages** — hosting
+- **Custom CSS** — theme overrides on top of Quarto's `cosmo` base
+
+No JavaScript frameworks, no build pipeline, no node_modules folder of shame.
+
+## Why Quarto
+
+I wanted something that handles code blocks well by default, can render math if I ever need it, and doesn't require me to fight the tooling to write a simple post.
+
+Quarto fits. It's opinionated enough to get out of the way, but extensible enough that I could build exactly the listing style I wanted.
+
+## The listing page
+
+Quarto's default post listing moves the title around depending on whether there's a thumbnail image. I didn't want that. A custom [EJS](https://ejs.co/) template gives full control over the HTML:
+
+```
+listing:
+  template: listing.ejs
+  fields: [date, title, description, categories]
+```
+
+The template is about 20 lines of straightforward HTML with EJS interpolation.
+
+## Search
+
+Full-text search comes for free with Quarto — just set `type: overlay` in the search config and it indexes all your content automatically using [Fuse.js](https://fusejs.io/).
+
+```yaml
+search:
+  location: navbar
+  type: overlay
+```
+
+That's most of it. The rest is CSS.

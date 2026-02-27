@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Lunar Developer</title>
+<link>https://lunardoesdev.github.io/</link>
+<atom:link href="https://lunardoesdev.github.io/index.xml" rel="self" type="application/rss+xml"/>
+<description>Notes on code, systems, and building software.</description>
+<generator>quarto-1.9.23</generator>
+<lastBuildDate>Mon, 09 Feb 2026 14:00:00 GMT</lastBuildDate>
+<item>
+  <title>This Blog’s Setup</title>
+  <link>https://lunardoesdev.github.io/posts/quarto-setup/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Since this is a developer blog, it seems right to write about how it’s built.</p>
+<section id="the-stack" class="level2">
+<h2 class="anchored" data-anchor-id="the-stack">The stack</h2>
+<ul>
+<li><strong><a href="https://quarto.org">Quarto</a></strong> — static site generator with first-class support for code, notebooks, and technical writing</li>
+<li><strong>GitHub Pages</strong> — hosting</li>
+<li><strong>Custom CSS</strong> — theme overrides on top of Quarto’s <code>cosmo</code> base</li>
+</ul>
+<p>No JavaScript frameworks, no build pipeline, no node_modules folder of shame.</p>
+</section>
+<section id="why-quarto" class="level2">
+<h2 class="anchored" data-anchor-id="why-quarto">Why Quarto</h2>
+<p>I wanted something that handles code blocks well by default, can render math if I ever need it, and doesn’t require me to fight the tooling to write a simple post.</p>
+<p>Quarto fits. It’s opinionated enough to get out of the way, but extensible enough that I could build exactly the listing style I wanted.</p>
+</section>
+<section id="the-listing-page" class="level2">
+<h2 class="anchored" data-anchor-id="the-listing-page">The listing page</h2>
+<p>Quarto’s default post listing moves the title around depending on whether there’s a thumbnail image. I didn’t want that. A custom <a href="https://ejs.co/">EJS</a> template gives full control over the HTML:</p>
+<pre><code>listing:
+  template: listing.ejs
+  fields: [date, title, description, categories]</code></pre>
+<p>The template is about 20 lines of straightforward HTML with EJS interpolation.</p>
+</section>
+<section id="search" class="level2">
+<h2 class="anchored" data-anchor-id="search">Search</h2>
+<p>Full-text search comes for free with Quarto — just set <code>type: overlay</code> in the search config and it indexes all your content automatically using <a href="https://fusejs.io/">Fuse.js</a>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">search</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span></span>
+<span id="cb2-2"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">location</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> navbar</span></span>
+<span id="cb2-3"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">type</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> overlay</span></span></code></pre></div></div>
+<p>That’s most of it. The rest is CSS.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>meta</category>
+  <category>tooling</category>
+  <guid>https://lunardoesdev.github.io/posts/quarto-setup/</guid>
+  <pubDate>Mon, 09 Feb 2026 14:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Thinking in Systems</title>
+  <link>https://lunardoesdev.github.io/posts/thinking-in-systems/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>There’s a kind of developer who can walk into any codebase and, within an hour, have a mental model good enough to find bugs reliably. They don’t have memorized APIs or encyclopedic language knowledge. What they have is a way of thinking about <em>systems</em>.</p>
+<section id="what-a-system-is" class="level2">
+<h2 class="anchored" data-anchor-id="what-a-system-is">What a system is</h2>
+<p>A system is anything with:</p>
+<ul>
+<li><strong>State</strong> — things that can change</li>
+<li><strong>Transitions</strong> — rules for how state changes</li>
+<li><strong>Boundaries</strong> — what’s inside vs.&nbsp;outside</li>
+</ul>
+<p>Your database is a system. Your HTTP server is a system. Your deployment pipeline is a system. A distributed microservice architecture is a system of systems.</p>
+<p>When something breaks, the question is always: <em>which state changed unexpectedly, and which transition caused it?</em></p>
+</section>
+<section id="the-trick" class="level2">
+<h2 class="anchored" data-anchor-id="the-trick">The trick</h2>
+<p>Most debugging goes wrong because people look at the symptoms directly. They search for the error message, find a Stack Overflow post from 2018, apply the suggested fix, and move on if it works.</p>
+<p>That approach fails on novel bugs — and increasingly, the easy bugs are already fixed.</p>
+<p>The better approach: ignore the error message first. Ask instead:</p>
+<ol type="1">
+<li>What was the expected state at this point?</li>
+<li>What is the actual state?</li>
+<li>Where did those two diverge?</li>
+</ol>
+<p>Once you’ve identified the divergence, the cause is usually nearby.</p>
+</section>
+<section id="building-the-habit" class="level2">
+<h2 class="anchored" data-anchor-id="building-the-habit">Building the habit</h2>
+<p>The habit is just asking “what changed?” before “what’s the error?”. It sounds obvious but takes practice to default to.</p>
+<p>Write down your mental model before you start investigating. It forces you to make your assumptions explicit — and explicit assumptions are much easier to test.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>engineering</category>
+  <category>thinking</category>
+  <guid>https://lunardoesdev.github.io/posts/thinking-in-systems/</guid>
+  <pubDate>Tue, 27 Jan 2026 14:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Hello, World</title>
+  <link>https://lunardoesdev.github.io/posts/hello-world/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Every blog needs a first post. This is mine.</p>
+<section id="what-this-is" class="level2">
+<h2 class="anchored" data-anchor-id="what-this-is">What this is</h2>
+<p>I’ve been meaning to write publicly for a while. Not to build an audience or grow a brand — just to have a place to put thoughts that are too long for a comment thread and too short to be a proper article.</p>
+<p>The topics will mostly be code-adjacent: things I’ve built, problems I’ve run into, approaches I find interesting. Occasionally something further afield.</p>
+</section>
+<section id="what-to-expect" class="level2">
+<h2 class="anchored" data-anchor-id="what-to-expect">What to expect</h2>
+<p>Posts here will be short and irregular. I’d rather write something small and honest than wait for a “real” post that never comes.</p>
+<p>If something here is wrong or you have a better way, feel free to reach out.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Start somewhere</span></span>
+<span id="cb1-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Hello, world."</span>)</span></code></pre></div></div>
+<p>That’s it. More soon.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>meta</category>
+  <guid>https://lunardoesdev.github.io/posts/hello-world/</guid>
+  <pubDate>Wed, 14 Jan 2026 14:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>

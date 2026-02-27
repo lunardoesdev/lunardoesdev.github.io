@@ -1,0 +1,27 @@
+---
+title: "Hello, World"
+description: "First post — what this blog is for and what to expect."
+date: "2026-01-15"
+categories: [meta]
+---
+
+Every blog needs a first post. This is mine.
+
+## What this is
+
+I've been meaning to write publicly for a while. Not to build an audience or grow a brand — just to have a place to put thoughts that are too long for a comment thread and too short to be a proper article.
+
+The topics will mostly be code-adjacent: things I've built, problems I've run into, approaches I find interesting. Occasionally something further afield.
+
+## What to expect
+
+Posts here will be short and irregular. I'd rather write something small and honest than wait for a "real" post that never comes.
+
+If something here is wrong or you have a better way, feel free to reach out.
+
+```python
+# Start somewhere
+print("Hello, world.")
+```
+
+That's it. More soon.

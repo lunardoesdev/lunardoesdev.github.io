@@ -1,0 +1,13 @@
+---
+title: "About"
+page-layout: article
+toc: false
+---
+
+Hi, I'm a developer who writes about code, systems, and the craft of building things.
+
+I mostly care about making software that works well and is pleasant to work with. This blog is where I put notes, half-formed ideas, and things I want to remember — written down so they're useful to more than just me.
+
+---
+
+Find me on [GitHub](https://github.com/lunardoesdev).
