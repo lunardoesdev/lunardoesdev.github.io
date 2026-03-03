@@ -28,7 +28,7 @@ format:
 #    highlight-style: github-dark
 #    code-copy: true
 #    link-external-newwindow: true
-    fontsize: 16pt
+    fontsize: 14pt
 #    linestretch: 1.7
 #    grid:
 #      body-width: 720px
