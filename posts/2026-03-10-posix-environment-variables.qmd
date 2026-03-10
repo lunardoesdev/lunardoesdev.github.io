@@ -1,0 +1,396 @@
+---
+title: "POSIX environment variables"
+description: "Practical env setup for staged source builds"
+date: "2026-03-10"
+---
+
+This post is about making staged source builds predictable with pre-set environment variables.
+
+If you keep install prefix, staging root, and compiler sysroot separate, most build behavior becomes easy to reason about.
+
+## `PREFIX`, `DESTDIR`, `SYSROOT`
+
+- `PREFIX` is the logical install location in the final target filesystem layout (`/usr`, `/usr/local`, `/opt/foo`, ...).
+- `DESTDIR` is a temporary staging root prepended only during install.
+- `SYSROOT` (compiler/linker concept, typically used as `--sysroot=/path`) remaps where headers and libraries are searched while building.
+
+Think in concrete paths:
+
+- `STAGE_PREFIX` in this post is a helper variable we define as `STAGE_PREFIX="$DESTDIR$PREFIX"` for readability.
+
+- intended path in the final system: `$PREFIX/bin/foo`
+- path where files are staged right now: `$STAGE_PREFIX/bin/foo`
+
+If `PREFIX=/usr` and `DESTDIR=/tmp/buildroot`, installing `foo` goes to `/tmp/buildroot/usr/bin/foo`, but the package still records its logical prefix as `/usr`.
+
+That is the core difference:
+
+- `PREFIX` changes package layout/metadata semantics.
+- `DESTDIR` changes only where install writes files.
+
+## Why `SYSROOT` matters (and when `-I`/`-L` is not enough)
+
+`SYSROOT` gives the compiler and linker a coherent alternate root for "system" headers and libraries.
+
+Without `SYSROOT`, build checks can silently mix host and staged artifacts (for example, header from host `/usr/include`, library from `$STAGE_PREFIX/lib`), which causes non-reproducible builds.
+
+Can you replace `SYSROOT` with manual include/lib flags?
+
+- Partially, for simple cases: `-I...` and `-L...` can point to custom dirs.
+- Not fully, for isolation: `--sysroot` also redirects built-in default system search behavior.
+- `-isystem` is like `-I` with different warning/ordering semantics for headers; it still does not replace full sysroot behavior.
+- There is no `-lsystem` flag; `-lfoo` only selects a library name, while search roots come from `-L...`, toolchain defaults, and/or `--sysroot`.
+
+Rule of thumb:
+
+- Native staged builds: use `-I`/`-isystem`/`-L` + pkg-config path control.
+- Strict SDK/cross builds: use `--sysroot` (with a complete sysroot).
+
+Important practical constraint:
+
+- `--sysroot=$SYSROOT` only works if `$SYSROOT` is a real sysroot (crt objects, libc headers, libc, linker files, etc.).
+- If your staging tree only contains third-party deps, a strict compiler sysroot usually breaks native builds.
+
+## Baseline Build Environment
+
+`CPPFLAGS` means C preprocessor flags. Despite the name, it is used for both C and C++ compilation (for example include paths and preprocessor defines).
+
+```bash
+export DESTDIR="$PWD/stage"
+export PREFIX="/usr/local"
+export STAGE_PREFIX="$DESTDIR$PREFIX"
+
+mkdir -p "$STAGE_PREFIX"
+
+export CC=cc
+export CXX=c++
+export CFLAGS="-O2 -pipe"
+export CXXFLAGS="$CFLAGS"
+export CPPFLAGS="-I$STAGE_PREFIX/include"
+export LDFLAGS="-L$STAGE_PREFIX/lib"
+
+# Use staged .pc files first
+export PKG_CONFIG_PATH="$STAGE_PREFIX/lib/pkgconfig:$STAGE_PREFIX/share/pkgconfig"
+
+export MAKEFLAGS="-j1"
+```
+
+Then run builds without repeating path flags:
+
+```bash
+./configure
+make
+make install
+```
+
+For this to work, the project must honor env-driven install variables (`PREFIX` and `DESTDIR`) or load them via project config glue (`CONFIG_SITE`, toolchain files, etc.). `DESTDIR` support is common; `PREFIX` support is common in Make-style projects but not universal.
+
+Some legacy projects only read lowercase `prefix`. For those, add `export prefix="$PREFIX"` once.
+
+If a project ignores `PREFIX` from env and defaults to `/usr/local`, either:
+
+- keep `PREFIX=/usr/local`, or
+- add project glue once (for example `CONFIG_SITE`) so env `PREFIX` is propagated.
+
+## Build Systems
+
+Common build systems you will see in source builds:
+
+- Autotools (`configure` + `make`)
+- CMake
+- Meson
+- Xmake
+- qmake
+
+Portable env subset understood across these systems (directly or through their compiler invocation layer):
+
+- `CC`: C compiler command
+- `CXX`: C++ compiler command
+- `CPPFLAGS`: preprocessor flags (include paths, defines) for C and C++
+- `CFLAGS`: C compile flags
+- `CXXFLAGS`: C++ compile flags
+- `LDFLAGS`: link flags
+
+Practical notes:
+
+- Set these before configure/setup (first CMake/Meson configure is especially important).
+- System-specific install-prefix variables are not fully uniform across all five systems (`PREFIX`, `CMAKE_INSTALL_PREFIX`, Meson `--prefix`, qmake variables, etc.).
+- Treat compiler/linker flags as the common denominator; treat install-prefix controls as build-system-specific.
+
+### Autotools
+
+- Core env: `CC`, `CXX`, `CPPFLAGS`, `CFLAGS`, `CXXFLAGS`, `LDFLAGS`, `PKG_CONFIG_PATH`, `DESTDIR`.
+- Prefix/install knobs: usually `./configure --prefix=...` and `make install DESTDIR=...` (some projects also honor env `PREFIX`/`prefix`).
+- Cross knobs: `--host` (where output runs), `--build` (where compile happens), plus target `AR`/`RANLIB`/`STRIP` for target archives/binaries.
+
+### CMake
+
+- Compiler env (first configure): `CC`, `CXX`, `CPPFLAGS`, `CFLAGS`, `CXXFLAGS`, `LDFLAGS`.
+- Install/staging: `CMAKE_INSTALL_PREFIX` (via `-D`) and `DESTDIR` for staging at install time.
+- Common CMake path variables used by discovery logic:
+  - `CMAKE_PREFIX_PATH`: extra install prefixes searched by `find_package`, `find_library`, `find_path`, etc.
+  - `CMAKE_INCLUDE_PATH`: additional header search roots for `find_path`/`find_file`.
+  - `CMAKE_LIBRARY_PATH`: additional library search roots for `find_library`.
+  - `CMAKE_PROGRAM_PATH`: additional executable search roots for `find_program`.
+  - `CMAKE_FRAMEWORK_PATH`: extra macOS framework roots for framework discovery.
+  - `CMAKE_APPBUNDLE_PATH`: extra macOS app bundle roots used by `find_program`.
+- Other useful CMake variables in strict/large projects:
+  - `CMAKE_MAXIMUM_RECURSION_DEPTH`: limit for recursive script/module processing.
+  - `CMAKE_POLICY_VERSION_MINIMUM`: minimum policy version baseline for policy behavior.
+
+### Meson
+
+- Core env: `CC`, `CXX`, `CPPFLAGS`, `CFLAGS`, `CXXFLAGS`, `LDFLAGS`, `PKG_CONFIG_PATH`, `DESTDIR`.
+- Prefix/install knobs: `meson setup --prefix=...` (or `-Dprefix=...`), then `DESTDIR=... meson install`.
+- Cross knobs: cross/native files (`binaries` selects toolchain commands, `properties` carries sysroot/pkg-config details, `host_machine` declares target machine).
+
+### Xmake
+
+- Common env accepted through toolchain/compiler layer: `CC`, `CXX`, `CPPFLAGS`, `CFLAGS`, `CXXFLAGS`, `LDFLAGS`.
+- Prefix/install behavior is project and rule dependent; often configured via xmake options/toolchain config rather than a single universal env variable.
+
+### qmake
+
+- Common env in many projects: `CC`, `CXX`, `CFLAGS`, `CXXFLAGS`, `LDFLAGS`.
+- Prefix/install usually comes from qmake/project variables (`target.path`, install sets) rather than plain `PREFIX`.
+- Cross builds are usually driven by mkspec/toolchain selection plus target binutils variables.
+
+### Universal naming hint
+
+If you want one shell profile that works across mixed build systems, keep canonical values in your own variables and map them outward:
+
+```bash
+export PREFIX="/usr/local"
+export DESTDIR="$PWD/stage"
+export STAGE_PREFIX="$DESTDIR$PREFIX"
+
+# Common compiler/link flags (portable subset)
+export CPPFLAGS="-I$STAGE_PREFIX/include"
+export LDFLAGS="-L$STAGE_PREFIX/lib"
+
+# Optional compatibility aliases for projects that expect lowercase names
+export prefix="$PREFIX"
+```
+
+Then map into each system's native prefix knobs only where needed (for example `--prefix` for Autotools/Meson, `CMAKE_INSTALL_PREFIX` for CMake).
+
+## Strict Sysroot Profile (Optional)
+
+If you are doing a true cross/SDK build with a complete sysroot, then add:
+
+```bash
+export SYSROOT="/opt/my-sdk-sysroot"
+export CC="cc --sysroot=$SYSROOT"
+export CXX="c++ --sysroot=$SYSROOT"
+export PKG_CONFIG_SYSROOT_DIR="$SYSROOT"
+export PKG_CONFIG_LIBDIR="$SYSROOT/usr/lib/pkgconfig:$SYSROOT/usr/share/pkgconfig"
+```
+
+In this profile, `DESTDIR` and `SYSROOT` are different things:
+
+- `DESTDIR`: where install writes staged files
+- `SYSROOT`: prebuilt SDK/toolchain root used by compiler/linker
+
+Do not treat `--sysroot` as a drop-in replacement for `-I`/`-L` in native builds unless that sysroot is fully populated.
+
+### Do build systems read `SYSROOT` automatically?
+
+Usually, no. Build systems mostly honor sysroot through their own options or through compiler flags.
+
+- Autotools: no universal `SYSROOT` env convention; pass sysroot via `CC`/`CXX` (or `CFLAGS`/`LDFLAGS`) and use `--host`.
+- CMake: use `CMAKE_SYSROOT` (typically in a toolchain file).
+- Meson: use a cross file (`[properties] sys_root=...`).
+- pkg-config: uses `PKG_CONFIG_SYSROOT_DIR` (fixed variable name).
+
+So if your project/build system already maps a `SYSROOT` environment variable internally, you do not need to duplicate `--sysroot=$SYSROOT` in `CC`.
+
+## Cross-Compilation
+
+For cross builds, keep five things aligned: target compiler, binutils tools, target sysroot/libc, pkg-config search, and configure triplets.
+
+Typical setup:
+
+```bash
+export TARGET="aarch64-linux-gnu"
+export SYSROOT="/opt/sdk/$TARGET/sysroot"
+
+export CC="$TARGET-gcc --sysroot=$SYSROOT"
+export CXX="$TARGET-g++ --sysroot=$SYSROOT"
+export AR="$TARGET-ar"
+export RANLIB="$TARGET-ranlib"
+export STRIP="$TARGET-strip"
+
+export PKG_CONFIG_SYSROOT_DIR="$SYSROOT"
+export PKG_CONFIG_LIBDIR="$SYSROOT/usr/lib/pkgconfig:$SYSROOT/usr/share/pkgconfig"
+unset PKG_CONFIG_PATH
+```
+
+Why `AR`/`RANLIB`/`STRIP` matter:
+
+- Libraries built during cross compilation must be archived and indexed by target tools, not host tools.
+- If you forget these, builds may appear to succeed but produce unusable target artifacts.
+
+With Autotools, pass host/build correctly:
+
+```bash
+./configure --build="$(uname -m)-pc-linux-gnu" --host="$TARGET"
+make
+make install
+```
+
+Notes:
+
+- `--host` is the machine that will run the output binaries.
+- `--build` is the machine doing the compilation.
+- In cross mode, configure tests that run binaries on the build machine are often skipped or require cache overrides.
+- `DESTDIR` still means staging root; it is independent from cross vs native.
+
+### Clang Cross (portable method)
+
+When using plain Clang for cross builds, `--target` is necessary but often not sufficient. A portable approach is: discover paths from `$TARGET-gcc`, then feed them to Clang.
+
+Discovery commands:
+
+```bash
+export TARGET="aarch64-linux-gnu"
+TARGET_CC=${TARGET}-gcc
+TARGET_AR=${TARGET}-ar
+
+# Cross compiler and binutils
+command -v $TARGET_CC
+command -v $TARGET_AR
+
+# Sysroot and toolchain search dirs
+$TARGET_CC -print-sysroot
+$TARGET_CC -print-search-dirs
+$TARGET_CC -print-file-name=crt1.o
+$TARGET_CC -print-file-name=libgcc.a
+```
+
+Then wire Clang manually:
+
+```bash
+export SYSROOT=$($TARGET_CC -print-sysroot)
+TARGET_GCC=$(command -v $TARGET_CC)
+TARGET_GCC_DIR=$(dirname $TARGET_GCC)
+GCC_TOOLCHAIN=$(dirname $TARGET_GCC_DIR)
+
+export CC="clang --target=$TARGET --sysroot=$SYSROOT --gcc-toolchain=$GCC_TOOLCHAIN"
+export CXX="clang++ --target=$TARGET --sysroot=$SYSROOT --gcc-toolchain=$GCC_TOOLCHAIN"
+
+export AR=${TARGET}-ar
+export RANLIB=${TARGET}-ranlib
+export STRIP=${TARGET}-strip
+```
+
+If linking still fails (missing `crt1.o`, `crti.o`, `libgcc_s`, etc.), add explicit include/library hints from your toolchain output:
+
+```bash
+export CPPFLAGS="$CPPFLAGS -isystem $SYSROOT/usr/include"
+export LDFLAGS="$LDFLAGS -L$SYSROOT/usr/lib -Wl,-rpath-link,$SYSROOT/usr/lib"
+```
+
+Keep `PKG_CONFIG_SYSROOT_DIR`/`PKG_CONFIG_LIBDIR` aligned with the same target sysroot so dependency checks and linker behavior agree.
+
+## `PKG_CONFIG_SYSROOT_DIR` and Multiple Roots
+
+`PKG_CONFIG_SYSROOT_DIR` supports one sysroot, not a list.
+
+- valid: `PKG_CONFIG_SYSROOT_DIR=/path/to/root`
+- not valid: `PKG_CONFIG_SYSROOT_DIR=/rootA:/rootB`
+
+To search multiple dependency locations, use ordered `PKG_CONFIG_LIBDIR` / `PKG_CONFIG_PATH` entries instead.
+
+## Compiler-Native Path Variables
+
+Besides `CPPFLAGS`/`LDFLAGS`, compilers also read environment path variables directly:
+
+- `CPATH`, `C_INCLUDE_PATH`, `CPLUS_INCLUDE_PATH`: extra header search paths.
+- `LIBRARY_PATH`: extra library search paths at link time.
+- `GCC_EXEC_PREFIX` / `COMPILER_PATH`: where GCC looks for internal tools/components.
+
+Use these carefully:
+
+- Helpful for quick local builds and toolchain wrappers.
+- Less portable across compilers and build systems than explicit flags (`CPPFLAGS`, `LDFLAGS`) and pkg-config.
+- `GCC_EXEC_PREFIX` is GCC-specific; Clang may ignore it.
+
+Practical default: use `CPPFLAGS`/`LDFLAGS`/pkg-config first, add compiler-native vars only when you specifically need them.
+
+## Case 1: Discover only dependencies in `$DESTDIR`
+
+Goal: package B should find package A already staged in `$DESTDIR`, and fail if only host `/usr` provides it.
+
+Use:
+
+- `CPPFLAGS`/`LDFLAGS` that point only at `$STAGE_PREFIX/include` and `$STAGE_PREFIX/lib`
+- `PKG_CONFIG_PATH`/`PKG_CONFIG_LIBDIR` containing only `$STAGE_PREFIX` pkg-config dirs
+- optional strict mode: `--sysroot=$SYSROOT` only when `$SYSROOT` is a complete sysroot
+
+This creates an isolated build view for headers, libs, and `.pc` metadata.
+
+## Case 2: Discover both `$DESTDIR` and external `$EXTERNAL_PREFIX`
+
+Sometimes you want staged artifacts first, then fallback to an external prefix like `/opt/sdk`.
+
+```bash
+export EXTERNAL_PREFIX="/opt/sdk"
+
+# DESTDIR stage first, external fallback second
+export CPPFLAGS="-I$STAGE_PREFIX/include -I$EXTERNAL_PREFIX/include"
+export LDFLAGS="-L$STAGE_PREFIX/lib -L$EXTERNAL_PREFIX/lib"
+
+# Order defines precedence for .pc discovery
+export PKG_CONFIG_LIBDIR="$STAGE_PREFIX/lib/pkgconfig:$STAGE_PREFIX/share/pkgconfig:$EXTERNAL_PREFIX/lib/pkgconfig:$EXTERNAL_PREFIX/share/pkgconfig"
+```
+
+If you also use strict sysroot mode, `PKG_CONFIG_SYSROOT_DIR` still stays single-valued. Multi-location behavior comes from ordered `PKG_CONFIG_LIBDIR`.
+
+## Case 3: Runtime dependencies when launching what you built
+
+Build-time discovery (`CPPFLAGS`, `LDFLAGS`, `pkg-config`) is separate from runtime loader behavior.
+
+Common runtime choices:
+
+1. Run from staging with `LD_LIBRARY_PATH`:
+
+   ```bash
+   LD_LIBRARY_PATH="$STAGE_PREFIX/lib" "$STAGE_PREFIX/bin/myapp"
+   ```
+
+   If you also need external fallback:
+
+   ```bash
+   LD_LIBRARY_PATH="$STAGE_PREFIX/lib:$EXTERNAL_PREFIX/lib" "$STAGE_PREFIX/bin/myapp"
+   ```
+
+2. Embed RUNPATH/RPATH at link time:
+
+   ```bash
+   export LDFLAGS="$LDFLAGS -Wl,-rpath,/usr/lib"
+   # relocatable layout option: -Wl,-rpath,'$ORIGIN/../lib'
+   ```
+
+3. Install to final system locations and rely on system loader config (`ldconfig`, distro defaults).
+
+If build steps execute just-built binaries (tests, code generators), you usually need either `LD_LIBRARY_PATH` in the build environment or an embedded RUNPATH.
+
+## Validation Example (Two Dependent Packages)
+
+Using the baseline profile above (`MAKEFLAGS=-j1`), one working pair is:
+
+1. build/install zlib into `$STAGE_PREFIX`
+2. build curl after that with `CPPFLAGS`/`LDFLAGS`/`PKG_CONFIG_PATH` pre-set
+
+Expected outcomes:
+
+- curl configure reports zlib enabled
+- staged runtime works with `LD_LIBRARY_PATH="$STAGE_PREFIX/lib"`
+
+## Practical Rule of Thumb
+
+- `PREFIX`: where software is meant to live.
+- `DESTDIR`: where files are staged right now.
+- `SYSROOT`: where compilers/linkers look while building (strict profile).
+
+Make these explicit up front and builds become predictable.
