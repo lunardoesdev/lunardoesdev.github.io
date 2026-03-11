@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-01-15">
-<meta name="description" content="First post — what this blog is for and what to expect.">
+<meta name="dcterms.date" content="2026-03-11">
+<meta name="description" content="some info related to cross-compilation mentioning toolchains and cross-compilers for different platforms">
 
-<title>Hello, World – Lunar Developer</title>
+<title>Cross-compilers for platforms – Lunar Developer</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,62 +22,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-7da2c855f65857a819f384d652ce98e4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-7da2c855f65857a819f384d652ce98e4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,7 +71,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -116,7 +81,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Lunar Developer</span>
     </a>
   </div>
@@ -127,17 +92,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Posts</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="../../index.xml"> <i class="bi bi-rss" role="img" aria-label="RSS Feed">
+    <a class="nav-link" href="../index.xml"> <i class="bi bi-rss" role="img" aria-label="RSS Feed">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -157,8 +122,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#what-this-is" id="toc-what-this-is" class="nav-link active" data-scroll-target="#what-this-is">What this is</a></li>
-  <li><a href="#what-to-expect" id="toc-what-to-expect" class="nav-link" data-scroll-target="#what-to-expect">What to expect</a></li>
+  <li><a href="#about-cross-compilation" id="toc-about-cross-compilation" class="nav-link active" data-scroll-target="#about-cross-compilation">about-cross-compilation</a></li>
+  <li><a href="#linux" id="toc-linux" class="nav-link" data-scroll-target="#linux">linux</a></li>
+  <li><a href="#web" id="toc-web" class="nav-link" data-scroll-target="#web">web</a></li>
+  <li><a href="#gameboy" id="toc-gameboy" class="nav-link" data-scroll-target="#gameboy">gameboy</a></li>
+  <li><a href="#gameboy-advance" id="toc-gameboy-advance" class="nav-link" data-scroll-target="#gameboy-advance">gameboy advance</a></li>
+  <li><a href="#nes-nintendo-entertainment-system" id="toc-nes-nintendo-entertainment-system" class="nav-link" data-scroll-target="#nes-nintendo-entertainment-system">nes (nintendo entertainment system)</a></li>
+  <li><a href="#sega-mega-drive" id="toc-sega-mega-drive" class="nav-link" data-scroll-target="#sega-mega-drive">sega mega drive</a></li>
+  <li><a href="#ps-vita" id="toc-ps-vita" class="nav-link" data-scroll-target="#ps-vita">ps vita</a></li>
+  <li><a href="#dos" id="toc-dos" class="nav-link" data-scroll-target="#dos">dos</a></li>
+  <li><a href="#devkitpro" id="toc-devkitpro" class="nav-link" data-scroll-target="#devkitpro">devkitpro</a>
+  <ul class="collapse">
+  <li><a href="#sega" id="toc-sega" class="nav-link" data-scroll-target="#sega">🎮 Sega</a></li>
+  <li><a href="#sony" id="toc-sony" class="nav-link" data-scroll-target="#sony">🖥️ Sony</a></li>
+  </ul></li>
+  <li><a href="#gbdk-2020" id="toc-gbdk-2020" class="nav-link" data-scroll-target="#gbdk-2020">gbdk-2020</a></li>
+  <li><a href="#using-zig-for-xmake-cross-compilaiton-with-choosing-glibc-version" id="toc-using-zig-for-xmake-cross-compilaiton-with-choosing-glibc-version" class="nav-link" data-scroll-target="#using-zig-for-xmake-cross-compilaiton-with-choosing-glibc-version">using zig for xmake cross-compilaiton with choosing glibc version</a></li>
   </ul>
 </nav>
     </div>
@@ -167,15 +146,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Hello, World</h1>
-  <div class="quarto-categories">
-    <div class="quarto-category">meta</div>
-  </div>
-  </div>
+<h1 class="title">Cross-compilers for platforms</h1>
+</div>
 
 <div>
   <div class="description">
-    First post — what this blog is for and what to expect.
+    some info related to cross-compilation mentioning toolchains and cross-compilers for different platforms
   </div>
 </div>
 
@@ -186,7 +162,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 15, 2026</p>
+      <p class="date">March 11, 2026</p>
     </div>
   </div>
   
@@ -198,19 +174,213 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Every blog needs a first post. This is mine.</p>
-<section id="what-this-is" class="level2">
-<h2 class="anchored" data-anchor-id="what-this-is">What this is</h2>
-<p>I’ve been meaning to write publicly for a while. Not to build an audience or grow a brand — just to have a place to put thoughts that are too long for a comment thread and too short to be a proper article.</p>
-<p>The topics will mostly be code-adjacent: things I’ve built, problems I’ve run into, approaches I find interesting. Occasionally something further afield.</p>
+<section id="about-cross-compilation" class="level1">
+<h1>about-cross-compilation</h1>
+<p>some info related to cross-compilation mentioning toolchains and cross-compilers for different platforms</p>
 </section>
-<section id="what-to-expect" class="level2">
-<h2 class="anchored" data-anchor-id="what-to-expect">What to expect</h2>
-<p>Posts here will be short and irregular. I’d rather write something small and honest than wait for a “real” post that never comes.</p>
-<p>If something here is wrong or you have a better way, feel free to reach out.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Start somewhere</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello, world."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>That’s it. More soon.</p>
+<section id="linux" class="level1">
+<h1>linux</h1>
+<ul>
+<li>develpoment
+<ul>
+<li>https://toolchains.bootlin.com/ you can download prebuild toolchains including very old ones (click “view all toolchains to see them”)</li>
+<li>zig https://ziglang.org can be used as cross-compilation toolchain and it DOES allow you to select preffered glibc version</li>
+</ul></li>
+<li>running
+<ul>
+<li>well I run linux on my hardware. # windows</li>
+</ul></li>
+<li>development
+<ul>
+<li>mingw package on ubuntu/debian/fedora/anywhere really</li>
+</ul></li>
+<li>running
+<ul>
+<li>wine # macos</li>
+</ul></li>
+<li>development
+<ul>
+<li>https://github.com/tpoechtrager/osxcross</li>
+<li>https://github.com/LcJuves/osx-cross-compiler</li>
+</ul></li>
+<li>running
+<ul>
+<li>https://www.darlinghq.org/ # android</li>
+</ul></li>
+<li>development
+<ul>
+<li>android studio</li>
+<li>https://pypi.org/project/sdkmanager/</li>
+</ul></li>
+<li>running
+<ul>
+<li>I have cheap android device</li>
+<li>emulator if your hadware is good enough</li>
+<li>x86_64 android using waydroid or something similar # ios</li>
+</ul></li>
+<li>development
+<ul>
+<li>https://github.com/xtool-org/xtool</li>
+</ul></li>
+<li>running
+<ul>
+<li>hard qemu setup (but I have weak pc)</li>
+</ul></li>
+</ul>
+</section>
+<section id="web" class="level1">
+<h1>web</h1>
+<ul>
+<li>development
+<ul>
+<li>emscripten</li>
+</ul></li>
+<li>running
+<ul>
+<li>browser</li>
+</ul></li>
+</ul>
+</section>
+<section id="gameboy" class="level1">
+<h1>gameboy</h1>
+<ul>
+<li>development
+<ul>
+<li>https://github.com/gbdk-2020/gbdk-2020/</li>
+<li>https://github.com/bandithedoge/devkitNix</li>
+</ul></li>
+</ul>
+</section>
+<section id="gameboy-advance" class="level1">
+<h1>gameboy advance</h1>
+<ul>
+<li>development
+<ul>
+<li>arm-none-eabi-gcc + libtonc https://github.com/gbadev-org/libtonc</li>
+<li>https://github.com/bandithedoge/devkitNix</li>
+</ul></li>
+</ul>
+</section>
+<section id="nes-nintendo-entertainment-system" class="level1">
+<h1>nes (nintendo entertainment system)</h1>
+<ul>
+<li>development
+<ul>
+<li>https://github.com/gbdk-2020/gbdk-2020/</li>
+</ul></li>
+</ul>
+</section>
+<section id="sega-mega-drive" class="level1">
+<h1>sega mega drive</h1>
+<ul>
+<li>development
+<ul>
+<li>https://github.com/andwn/marsdev</li>
+</ul></li>
+</ul>
+</section>
+<section id="ps-vita" class="level1">
+<h1>ps vita</h1>
+<ul>
+<li>development
+<ul>
+<li>sdk https://github.com/psvsdk/psvsdk</li>
+</ul></li>
+</ul>
+</section>
+<section id="dos" class="level1">
+<h1>dos</h1>
+<ul>
+<li>development
+<ul>
+<li>open-watcom-v2 https://mynixos.com/nixpkgs/package/open-watcom-v2 (or build it from source https://github.com/open-watcom/open-watcom-v2)</li>
+<li>djgpp https://mynixos.com/nixpkgs/package/djgpp (origin https://www.delorie.com/djgpp/)</li>
+</ul></li>
+<li>running
+<ul>
+<li>dosbox-x</li>
+<li>dosbox</li>
+</ul></li>
+</ul>
+</section>
+<section id="devkitpro" class="level1">
+<h1>devkitpro</h1>
+<p>can be installed by https://github.com/bandithedoge/devkitNix supports following targets: ## 🕹️ Nintendo</p>
+<ul>
+<li><p>Game Boy Advance (GBA)</p>
+<ul>
+<li>target: <code>arm-eabi</code></li>
+<li>toolchain: <code>devkitARM</code></li>
+</ul></li>
+<li><p>Nintendo DS (NDS)</p>
+<ul>
+<li>target: <code>arm-eabi</code> (dual-core ARM7/ARM9)</li>
+<li>toolchain: <code>devkitARM</code></li>
+</ul></li>
+<li><p>Nintendo 3DS</p>
+<ul>
+<li>target: <code>arm-none-eabi</code> (ARM11 + ARM9)</li>
+<li>toolchain: <code>devkitARM</code> + специфичные библиотеки (<code>libctru</code>)</li>
+</ul></li>
+<li><p>Nintendo Switch</p>
+<ul>
+<li>target: <code>aarch64-none-elf</code></li>
+<li>toolchain: <code>devkitA64</code></li>
+<li>SDK: <code>libnx</code></li>
+</ul></li>
+</ul>
+<hr>
+<section id="sega" class="level2">
+<h2 class="anchored" data-anchor-id="sega">🎮 Sega</h2>
+<ul>
+<li>Sega Dreamcast
+<ul>
+<li>target: <code>sh-elf</code> (SuperH SH-4)</li>
+<li>toolchain: <code>devkitSH4</code></li>
+<li>SDK: <code>KallistiOS (KOS)</code></li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="sony" class="level2">
+<h2 class="anchored" data-anchor-id="sony">🖥️ Sony</h2>
+<ul>
+<li><p>PlayStation 2</p>
+<ul>
+<li>target: <code>mipsel-none-elf</code></li>
+<li>toolchain: <code>devkitPS2</code></li>
+<li>SDK: <code>PS2SDK</code></li>
+</ul></li>
+<li><p>PlayStation Portable (PSP)</p>
+<ul>
+<li>target: <code>mipsel-none-elf</code></li>
+<li>toolchain: <code>devkitPSP</code></li>
+<li>SDK: <code>PSPSDK</code></li>
+</ul></li>
+<li><p>PlayStation Vita</p>
+<ul>
+<li>target: <code>arm-vita-eabi</code></li>
+<li>toolchain: <code>vitasdk</code></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="gbdk-2020" class="level1">
+<h1>gbdk-2020</h1>
+<p>https://github.com/gbdk-2020/gbdk-2020/</p>
+<p>Supported Consoles: <a href="https://gbdk.org/docs/api/docs_supported_consoles.html">(see docs)</a></p>
+<ul>
+<li>Nintendo Game Boy / Game Boy Color</li>
+<li>Analogue Pocket</li>
+<li>Sega Master System &amp; Game Gear</li>
+<li>Mega Duck / Cougar Boy</li>
+<li>NES</li>
+</ul>
+</section>
+<section id="using-zig-for-xmake-cross-compilaiton-with-choosing-glibc-version" class="level1">
+<h1>using zig for xmake cross-compilaiton with choosing glibc version</h1>
+<pre><code>xmake f -p cross --toolchain=zig --cross=x86_64-linux-gnu.2.22
+xmake build</code></pre>
 
 
 </section>

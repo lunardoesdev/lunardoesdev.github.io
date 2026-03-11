@@ -1,5 +1,40 @@
 [
   {
+    "objectID": "readme.html",
+    "href": "readme.html",
+    "title": "Welcome to my site",
+    "section": "",
+    "text": "Welcome to my site\nhttps://lunardoesdev.github.io"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Hi, I’m a developer who writes about code, systems, and the craft of building things.\nI mostly care about making software that works well and is pleasant to work with. This blog is where I put notes, half-formed ideas, and things I want to remember — written down so they’re useful to more than just me.\n\nFind me on GitHub."
+  },
+  {
+    "objectID": "posts/hello-world/index.html",
+    "href": "posts/hello-world/index.html",
+    "title": "Hello, World",
+    "section": "",
+    "text": "Every blog needs a first post. This is mine."
+  },
+  {
+    "objectID": "posts/hello-world/index.html#what-this-is",
+    "href": "posts/hello-world/index.html#what-this-is",
+    "title": "Hello, World",
+    "section": "What this is",
+    "text": "What this is\nI’ve been meaning to write publicly for a while. Not to build an audience or grow a brand — just to have a place to put thoughts that are too long for a comment thread and too short to be a proper article.\nThe topics will mostly be code-adjacent: things I’ve built, problems I’ve run into, approaches I find interesting. Occasionally something further afield."
+  },
+  {
+    "objectID": "posts/hello-world/index.html#what-to-expect",
+    "href": "posts/hello-world/index.html#what-to-expect",
+    "title": "Hello, World",
+    "section": "What to expect",
+    "text": "What to expect\nPosts here will be short and irregular. I’d rather write something small and honest than wait for a “real” post that never comes.\nIf something here is wrong or you have a better way, feel free to reach out.\n# Start somewhere\nprint(\"Hello, world.\")\nThat’s it. More soon."
+  },
+  {
     "objectID": "posts/thinking-in-systems/index.html",
     "href": "posts/thinking-in-systems/index.html",
     "title": "Thinking in Systems",
@@ -26,48 +61,6 @@
     "title": "Thinking in Systems",
     "section": "Building the habit",
     "text": "Building the habit\nThe habit is just asking “what changed?” before “what’s the error?”. It sounds obvious but takes practice to default to.\nWrite down your mental model before you start investigating. It forces you to make your assumptions explicit — and explicit assumptions are much easier to test."
-  },
-  {
-    "objectID": "posts/hello-world/index.html",
-    "href": "posts/hello-world/index.html",
-    "title": "Hello, World",
-    "section": "",
-    "text": "Every blog needs a first post. This is mine."
-  },
-  {
-    "objectID": "posts/hello-world/index.html#what-this-is",
-    "href": "posts/hello-world/index.html#what-this-is",
-    "title": "Hello, World",
-    "section": "What this is",
-    "text": "What this is\nI’ve been meaning to write publicly for a while. Not to build an audience or grow a brand — just to have a place to put thoughts that are too long for a comment thread and too short to be a proper article.\nThe topics will mostly be code-adjacent: things I’ve built, problems I’ve run into, approaches I find interesting. Occasionally something further afield."
-  },
-  {
-    "objectID": "posts/hello-world/index.html#what-to-expect",
-    "href": "posts/hello-world/index.html#what-to-expect",
-    "title": "Hello, World",
-    "section": "What to expect",
-    "text": "What to expect\nPosts here will be short and irregular. I’d rather write something small and honest than wait for a “real” post that never comes.\nIf something here is wrong or you have a better way, feel free to reach out.\n# Start somewhere\nprint(\"Hello, world.\")\nThat’s it. More soon."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Posts",
-    "section": "",
-    "text": "Feb 10, 2026 ·1 min\n\n\nThis Blog's Setup\n\n\nHow this blog is built: Quarto, custom listing template, full-text search, and a few CSS tweaks.\n\n\n\nmeta\n\n\ntooling\n\n\n\n\n\nJan 28, 2026 ·2 min\n\n\nThinking in Systems\n\n\nWhy the best debugging skill isn't knowing the codebase — it's knowing how to think about moving parts.\n\n\n\nengineering\n\n\nthinking\n\n\n\n\n\nJan 15, 2026 ·1 min\n\n\nHello, World\n\n\nFirst post — what this blog is for and what to expect.\n\n\n\nmeta\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Hi, I’m a developer who writes about code, systems, and the craft of building things.\nI mostly care about making software that works well and is pleasant to work with. This blog is where I put notes, half-formed ideas, and things I want to remember — written down so they’re useful to more than just me.\n\nFind me on GitHub."
-  },
-  {
-    "objectID": "readme.html",
-    "href": "readme.html",
-    "title": "Welcome to my site",
-    "section": "",
-    "text": "Welcome to my site\nhttps://lunardoesdev.github.io"
   },
   {
     "objectID": "posts/quarto-setup/index.html",
@@ -103,5 +96,131 @@
     "title": "This Blog’s Setup",
     "section": "Search",
     "text": "Search\nFull-text search comes for free with Quarto — just set type: overlay in the search config and it indexes all your content automatically using Fuse.js.\nsearch:\n  location: navbar\n  type: overlay\nThat’s most of it. The rest is CSS."
+  },
+  {
+    "objectID": "posts/2026-03-10-posix-environment-variables.html",
+    "href": "posts/2026-03-10-posix-environment-variables.html",
+    "title": "POSIX environment variables",
+    "section": "",
+    "text": "This post is about making staged source builds predictable with pre-set environment variables.\nIf you keep install prefix, staging root, and compiler sysroot separate, most build behavior becomes easy to reason about."
+  },
+  {
+    "objectID": "posts/2026-03-10-posix-environment-variables.html#prefix-destdir-sysroot",
+    "href": "posts/2026-03-10-posix-environment-variables.html#prefix-destdir-sysroot",
+    "title": "POSIX environment variables",
+    "section": "PREFIX, DESTDIR, SYSROOT",
+    "text": "PREFIX, DESTDIR, SYSROOT\n\nPREFIX is the logical install location in the final target filesystem layout (/usr, /usr/local, /opt/foo, …).\nDESTDIR is a temporary staging root prepended only during install.\nSYSROOT (compiler/linker concept, typically used as --sysroot=/path) remaps where headers and libraries are searched while building.\n\nThink in concrete paths:\n\nSTAGE_PREFIX in this post is a helper variable we define as STAGE_PREFIX=\"$DESTDIR$PREFIX\" for readability.\nintended path in the final system: $PREFIX/bin/foo\npath where files are staged right now: $STAGE_PREFIX/bin/foo\n\nIf PREFIX=/usr and DESTDIR=/tmp/buildroot, installing foo goes to /tmp/buildroot/usr/bin/foo, but the package still records its logical prefix as /usr.\nThat is the core difference:\n\nPREFIX changes package layout/metadata semantics.\nDESTDIR changes only where install writes files."
+  },
+  {
+    "objectID": "posts/2026-03-10-posix-environment-variables.html#why-sysroot-matters-and-when--i-l-is-not-enough",
+    "href": "posts/2026-03-10-posix-environment-variables.html#why-sysroot-matters-and-when--i-l-is-not-enough",
+    "title": "POSIX environment variables",
+    "section": "Why SYSROOT matters (and when -I/-L is not enough)",
+    "text": "Why SYSROOT matters (and when -I/-L is not enough)\nSYSROOT gives the compiler and linker a coherent alternate root for “system” headers and libraries.\nWithout SYSROOT, build checks can silently mix host and staged artifacts (for example, header from host /usr/include, library from $STAGE_PREFIX/lib), which causes non-reproducible builds.\nCan you replace SYSROOT with manual include/lib flags?\n\nPartially, for simple cases: -I... and -L... can point to custom dirs.\nNot fully, for isolation: --sysroot also redirects built-in default system search behavior.\n-isystem is like -I with different warning/ordering semantics for headers; it still does not replace full sysroot behavior.\nThere is no -lsystem flag; -lfoo only selects a library name, while search roots come from -L..., toolchain defaults, and/or --sysroot.\n\nRule of thumb:\n\nNative staged builds: use -I/-isystem/-L + pkg-config path control.\nStrict SDK/cross builds: use --sysroot (with a complete sysroot).\n\nImportant practical constraint:\n\n--sysroot=$SYSROOT only works if $SYSROOT is a real sysroot (crt objects, libc headers, libc, linker files, etc.).\nIf your staging tree only contains third-party deps, a strict compiler sysroot usually breaks native builds."
+  },
+  {
+    "objectID": "posts/2026-03-10-posix-environment-variables.html#baseline-build-environment",
+    "href": "posts/2026-03-10-posix-environment-variables.html#baseline-build-environment",
+    "title": "POSIX environment variables",
+    "section": "Baseline Build Environment",
+    "text": "Baseline Build Environment\nCPPFLAGS means C preprocessor flags. Despite the name, it is used for both C and C++ compilation (for example include paths and preprocessor defines).\nexport DESTDIR=\"$PWD/stage\"\nexport PREFIX=\"/usr/local\"\nexport STAGE_PREFIX=\"$DESTDIR$PREFIX\"\n\nmkdir -p \"$STAGE_PREFIX\"\n\nexport CC=cc\nexport CXX=c++\nexport CFLAGS=\"-O2 -pipe\"\nexport CXXFLAGS=\"$CFLAGS\"\nexport CPPFLAGS=\"-I$STAGE_PREFIX/include\"\nexport LDFLAGS=\"-L$STAGE_PREFIX/lib\"\n\n# Use staged .pc files first\nexport PKG_CONFIG_PATH=\"$STAGE_PREFIX/lib/pkgconfig:$STAGE_PREFIX/share/pkgconfig\"\n\nexport MAKEFLAGS=\"-j1\"\nThen run builds without repeating path flags:\n./configure\nmake\nmake install\nFor this to work, the project must honor env-driven install variables (PREFIX and DESTDIR) or load them via project config glue (CONFIG_SITE, toolchain files, etc.). DESTDIR support is common; PREFIX support is common in Make-style projects but not universal.\nSome legacy projects only read lowercase prefix. For those, add export prefix=\"$PREFIX\" once.\nIf a project ignores PREFIX from env and defaults to /usr/local, either:\n\nkeep PREFIX=/usr/local, or\nadd project glue once (for example CONFIG_SITE) so env PREFIX is propagated."
+  },
+  {
+    "objectID": "posts/2026-03-10-posix-environment-variables.html#build-systems",
+    "href": "posts/2026-03-10-posix-environment-variables.html#build-systems",
+    "title": "POSIX environment variables",
+    "section": "Build Systems",
+    "text": "Build Systems\nCommon build systems you will see in source builds:\n\nAutotools (configure + make)\nCMake\nMeson\nXmake\nqmake\n\nPortable env subset understood across these systems (directly or through their compiler invocation layer):\n\nCC: C compiler command\nCXX: C++ compiler command\nCPPFLAGS: preprocessor flags (include paths, defines) for C and C++\nCFLAGS: C compile flags\nCXXFLAGS: C++ compile flags\nLDFLAGS: link flags\n\nPractical notes:\n\nSet these before configure/setup (first CMake/Meson configure is especially important).\nSystem-specific install-prefix variables are not fully uniform across all five systems (PREFIX, CMAKE_INSTALL_PREFIX, Meson --prefix, qmake variables, etc.).\nTreat compiler/linker flags as the common denominator; treat install-prefix controls as build-system-specific.\n\n\nAutotools\n\nCore env: CC, CXX, CPPFLAGS, CFLAGS, CXXFLAGS, LDFLAGS, PKG_CONFIG_PATH, DESTDIR.\nPrefix/install knobs: usually ./configure --prefix=... and make install DESTDIR=... (some projects also honor env PREFIX/prefix).\nCross knobs: --host (where output runs), --build (where compile happens), plus target AR/RANLIB/STRIP for target archives/binaries.\n\n\n\nCMake\n\nCompiler env (first configure): CC, CXX, CPPFLAGS, CFLAGS, CXXFLAGS, LDFLAGS.\nInstall/staging: CMAKE_INSTALL_PREFIX (via -D) and DESTDIR for staging at install time.\nCommon CMake path variables used by discovery logic:\n\nCMAKE_PREFIX_PATH: extra install prefixes searched by find_package, find_library, find_path, etc.\nCMAKE_INCLUDE_PATH: additional header search roots for find_path/find_file.\nCMAKE_LIBRARY_PATH: additional library search roots for find_library.\nCMAKE_PROGRAM_PATH: additional executable search roots for find_program.\nCMAKE_FRAMEWORK_PATH: extra macOS framework roots for framework discovery.\nCMAKE_APPBUNDLE_PATH: extra macOS app bundle roots used by find_program.\n\nOther useful CMake variables in strict/large projects:\n\nCMAKE_MAXIMUM_RECURSION_DEPTH: limit for recursive script/module processing.\nCMAKE_POLICY_VERSION_MINIMUM: minimum policy version baseline for policy behavior.\n\n\n\n\nMeson\n\nCore env: CC, CXX, CPPFLAGS, CFLAGS, CXXFLAGS, LDFLAGS, PKG_CONFIG_PATH, DESTDIR.\nPrefix/install knobs: meson setup --prefix=... (or -Dprefix=...), then DESTDIR=... meson install.\nCross knobs: cross/native files (binaries selects toolchain commands, properties carries sysroot/pkg-config details, host_machine declares target machine).\n\n\n\nXmake\n\nCommon env accepted through toolchain/compiler layer: CC, CXX, CPPFLAGS, CFLAGS, CXXFLAGS, LDFLAGS.\nPrefix/install behavior is project and rule dependent; often configured via xmake options/toolchain config rather than a single universal env variable.\n\n\n\nqmake\n\nCommon env in many projects: CC, CXX, CFLAGS, CXXFLAGS, LDFLAGS.\nPrefix/install usually comes from qmake/project variables (target.path, install sets) rather than plain PREFIX.\nCross builds are usually driven by mkspec/toolchain selection plus target binutils variables.\n\n\n\nUniversal naming hint\nIf you want one shell profile that works across mixed build systems, keep canonical values in your own variables and map them outward:\nexport PREFIX=\"/usr/local\"\nexport DESTDIR=\"$PWD/stage\"\nexport STAGE_PREFIX=\"$DESTDIR$PREFIX\"\n\n# Common compiler/link flags (portable subset)\nexport CPPFLAGS=\"-I$STAGE_PREFIX/include\"\nexport LDFLAGS=\"-L$STAGE_PREFIX/lib\"\n\n# Optional compatibility aliases for projects that expect lowercase names\nexport prefix=\"$PREFIX\"\nThen map into each system’s native prefix knobs only where needed (for example --prefix for Autotools/Meson, CMAKE_INSTALL_PREFIX for CMake)."
+  },
+  {
+    "objectID": "posts/2026-03-10-posix-environment-variables.html#strict-sysroot-profile-optional",
+    "href": "posts/2026-03-10-posix-environment-variables.html#strict-sysroot-profile-optional",
+    "title": "POSIX environment variables",
+    "section": "Strict Sysroot Profile (Optional)",
+    "text": "Strict Sysroot Profile (Optional)\nIf you are doing a true cross/SDK build with a complete sysroot, then add:\nexport SYSROOT=\"/opt/my-sdk-sysroot\"\nexport CC=\"cc --sysroot=$SYSROOT\"\nexport CXX=\"c++ --sysroot=$SYSROOT\"\nexport PKG_CONFIG_SYSROOT_DIR=\"$SYSROOT\"\nexport PKG_CONFIG_LIBDIR=\"$SYSROOT/usr/lib/pkgconfig:$SYSROOT/usr/share/pkgconfig\"\nIn this profile, DESTDIR and SYSROOT are different things:\n\nDESTDIR: where install writes staged files\nSYSROOT: prebuilt SDK/toolchain root used by compiler/linker\n\nDo not treat --sysroot as a drop-in replacement for -I/-L in native builds unless that sysroot is fully populated.\n\nDo build systems read SYSROOT automatically?\nUsually, no. Build systems mostly honor sysroot through their own options or through compiler flags.\n\nAutotools: no universal SYSROOT env convention; pass sysroot via CC/CXX (or CFLAGS/LDFLAGS) and use --host.\nCMake: use CMAKE_SYSROOT (typically in a toolchain file).\nMeson: use a cross file ([properties] sys_root=...).\npkg-config: uses PKG_CONFIG_SYSROOT_DIR (fixed variable name).\n\nSo if your project/build system already maps a SYSROOT environment variable internally, you do not need to duplicate --sysroot=$SYSROOT in CC."
+  },
+  {
+    "objectID": "posts/2026-03-10-posix-environment-variables.html#cross-compilation",
+    "href": "posts/2026-03-10-posix-environment-variables.html#cross-compilation",
+    "title": "POSIX environment variables",
+    "section": "Cross-Compilation",
+    "text": "Cross-Compilation\nFor cross builds, keep five things aligned: target compiler, binutils tools, target sysroot/libc, pkg-config search, and configure triplets.\nTypical setup:\nexport TARGET=\"aarch64-linux-gnu\"\nexport SYSROOT=\"/opt/sdk/$TARGET/sysroot\"\n\nexport CC=\"$TARGET-gcc --sysroot=$SYSROOT\"\nexport CXX=\"$TARGET-g++ --sysroot=$SYSROOT\"\nexport AR=\"$TARGET-ar\"\nexport RANLIB=\"$TARGET-ranlib\"\nexport STRIP=\"$TARGET-strip\"\n\nexport PKG_CONFIG_SYSROOT_DIR=\"$SYSROOT\"\nexport PKG_CONFIG_LIBDIR=\"$SYSROOT/usr/lib/pkgconfig:$SYSROOT/usr/share/pkgconfig\"\nunset PKG_CONFIG_PATH\nWhy AR/RANLIB/STRIP matter:\n\nLibraries built during cross compilation must be archived and indexed by target tools, not host tools.\nIf you forget these, builds may appear to succeed but produce unusable target artifacts.\n\nWith Autotools, pass host/build correctly:\n./configure --build=\"$(uname -m)-pc-linux-gnu\" --host=\"$TARGET\"\nmake\nmake install\nNotes:\n\n--host is the machine that will run the output binaries.\n--build is the machine doing the compilation.\nIn cross mode, configure tests that run binaries on the build machine are often skipped or require cache overrides.\nDESTDIR still means staging root; it is independent from cross vs native.\n\n\nClang Cross (portable method)\nWhen using plain Clang for cross builds, --target is necessary but often not sufficient. A portable approach is: discover paths from $TARGET-gcc, then feed them to Clang.\nDiscovery commands:\nexport TARGET=\"aarch64-linux-gnu\"\nTARGET_CC=${TARGET}-gcc\nTARGET_AR=${TARGET}-ar\n\n# Cross compiler and binutils\ncommand -v $TARGET_CC\ncommand -v $TARGET_AR\n\n# Sysroot and toolchain search dirs\n$TARGET_CC -print-sysroot\n$TARGET_CC -print-search-dirs\n$TARGET_CC -print-file-name=crt1.o\n$TARGET_CC -print-file-name=libgcc.a\nThen wire Clang manually:\nexport SYSROOT=$($TARGET_CC -print-sysroot)\nTARGET_GCC=$(command -v $TARGET_CC)\nTARGET_GCC_DIR=$(dirname $TARGET_GCC)\nGCC_TOOLCHAIN=$(dirname $TARGET_GCC_DIR)\n\nexport CC=\"clang --target=$TARGET --sysroot=$SYSROOT --gcc-toolchain=$GCC_TOOLCHAIN\"\nexport CXX=\"clang++ --target=$TARGET --sysroot=$SYSROOT --gcc-toolchain=$GCC_TOOLCHAIN\"\n\nexport AR=${TARGET}-ar\nexport RANLIB=${TARGET}-ranlib\nexport STRIP=${TARGET}-strip\nIf linking still fails (missing crt1.o, crti.o, libgcc_s, etc.), add explicit include/library hints from your toolchain output:\nexport CPPFLAGS=\"$CPPFLAGS -isystem $SYSROOT/usr/include\"\nexport LDFLAGS=\"$LDFLAGS -L$SYSROOT/usr/lib -Wl,-rpath-link,$SYSROOT/usr/lib\"\nKeep PKG_CONFIG_SYSROOT_DIR/PKG_CONFIG_LIBDIR aligned with the same target sysroot so dependency checks and linker behavior agree."
+  },
+  {
+    "objectID": "posts/2026-03-10-posix-environment-variables.html#pkg_config_sysroot_dir-and-multiple-roots",
+    "href": "posts/2026-03-10-posix-environment-variables.html#pkg_config_sysroot_dir-and-multiple-roots",
+    "title": "POSIX environment variables",
+    "section": "PKG_CONFIG_SYSROOT_DIR and Multiple Roots",
+    "text": "PKG_CONFIG_SYSROOT_DIR and Multiple Roots\nPKG_CONFIG_SYSROOT_DIR supports one sysroot, not a list.\n\nvalid: PKG_CONFIG_SYSROOT_DIR=/path/to/root\nnot valid: PKG_CONFIG_SYSROOT_DIR=/rootA:/rootB\n\nTo search multiple dependency locations, use ordered PKG_CONFIG_LIBDIR / PKG_CONFIG_PATH entries instead."
+  },
+  {
+    "objectID": "posts/2026-03-10-posix-environment-variables.html#compiler-native-path-variables",
+    "href": "posts/2026-03-10-posix-environment-variables.html#compiler-native-path-variables",
+    "title": "POSIX environment variables",
+    "section": "Compiler-Native Path Variables",
+    "text": "Compiler-Native Path Variables\nBesides CPPFLAGS/LDFLAGS, compilers also read environment path variables directly:\n\nCPATH, C_INCLUDE_PATH, CPLUS_INCLUDE_PATH: extra header search paths.\nLIBRARY_PATH: extra library search paths at link time.\nGCC_EXEC_PREFIX / COMPILER_PATH: where GCC looks for internal tools/components.\n\nUse these carefully:\n\nHelpful for quick local builds and toolchain wrappers.\nLess portable across compilers and build systems than explicit flags (CPPFLAGS, LDFLAGS) and pkg-config.\nGCC_EXEC_PREFIX is GCC-specific; Clang may ignore it.\n\nPractical default: use CPPFLAGS/LDFLAGS/pkg-config first, add compiler-native vars only when you specifically need them."
+  },
+  {
+    "objectID": "posts/2026-03-10-posix-environment-variables.html#case-1-discover-only-dependencies-in-destdir",
+    "href": "posts/2026-03-10-posix-environment-variables.html#case-1-discover-only-dependencies-in-destdir",
+    "title": "POSIX environment variables",
+    "section": "Case 1: Discover only dependencies in $DESTDIR",
+    "text": "Case 1: Discover only dependencies in $DESTDIR\nGoal: package B should find package A already staged in $DESTDIR, and fail if only host /usr provides it.\nUse:\n\nCPPFLAGS/LDFLAGS that point only at $STAGE_PREFIX/include and $STAGE_PREFIX/lib\nPKG_CONFIG_PATH/PKG_CONFIG_LIBDIR containing only $STAGE_PREFIX pkg-config dirs\noptional strict mode: --sysroot=$SYSROOT only when $SYSROOT is a complete sysroot\n\nThis creates an isolated build view for headers, libs, and .pc metadata."
+  },
+  {
+    "objectID": "posts/2026-03-10-posix-environment-variables.html#case-2-discover-both-destdir-and-external-external_prefix",
+    "href": "posts/2026-03-10-posix-environment-variables.html#case-2-discover-both-destdir-and-external-external_prefix",
+    "title": "POSIX environment variables",
+    "section": "Case 2: Discover both $DESTDIR and external $EXTERNAL_PREFIX",
+    "text": "Case 2: Discover both $DESTDIR and external $EXTERNAL_PREFIX\nSometimes you want staged artifacts first, then fallback to an external prefix like /opt/sdk.\nexport EXTERNAL_PREFIX=\"/opt/sdk\"\n\n# DESTDIR stage first, external fallback second\nexport CPPFLAGS=\"-I$STAGE_PREFIX/include -I$EXTERNAL_PREFIX/include\"\nexport LDFLAGS=\"-L$STAGE_PREFIX/lib -L$EXTERNAL_PREFIX/lib\"\n\n# Order defines precedence for .pc discovery\nexport PKG_CONFIG_LIBDIR=\"$STAGE_PREFIX/lib/pkgconfig:$STAGE_PREFIX/share/pkgconfig:$EXTERNAL_PREFIX/lib/pkgconfig:$EXTERNAL_PREFIX/share/pkgconfig\"\nIf you also use strict sysroot mode, PKG_CONFIG_SYSROOT_DIR still stays single-valued. Multi-location behavior comes from ordered PKG_CONFIG_LIBDIR."
+  },
+  {
+    "objectID": "posts/2026-03-10-posix-environment-variables.html#case-3-runtime-dependencies-when-launching-what-you-built",
+    "href": "posts/2026-03-10-posix-environment-variables.html#case-3-runtime-dependencies-when-launching-what-you-built",
+    "title": "POSIX environment variables",
+    "section": "Case 3: Runtime dependencies when launching what you built",
+    "text": "Case 3: Runtime dependencies when launching what you built\nBuild-time discovery (CPPFLAGS, LDFLAGS, pkg-config) is separate from runtime loader behavior.\nCommon runtime choices:\n\nRun from staging with LD_LIBRARY_PATH:\nLD_LIBRARY_PATH=\"$STAGE_PREFIX/lib\" \"$STAGE_PREFIX/bin/myapp\"\nIf you also need external fallback:\nLD_LIBRARY_PATH=\"$STAGE_PREFIX/lib:$EXTERNAL_PREFIX/lib\" \"$STAGE_PREFIX/bin/myapp\"\nEmbed RUNPATH/RPATH at link time:\nexport LDFLAGS=\"$LDFLAGS -Wl,-rpath,/usr/lib\"\n# relocatable layout option: -Wl,-rpath,'$ORIGIN/../lib'\nInstall to final system locations and rely on system loader config (ldconfig, distro defaults).\n\nIf build steps execute just-built binaries (tests, code generators), you usually need either LD_LIBRARY_PATH in the build environment or an embedded RUNPATH."
+  },
+  {
+    "objectID": "posts/2026-03-10-posix-environment-variables.html#validation-example-two-dependent-packages",
+    "href": "posts/2026-03-10-posix-environment-variables.html#validation-example-two-dependent-packages",
+    "title": "POSIX environment variables",
+    "section": "Validation Example (Two Dependent Packages)",
+    "text": "Validation Example (Two Dependent Packages)\nUsing the baseline profile above (MAKEFLAGS=-j1), one working pair is:\n\nbuild/install zlib into $STAGE_PREFIX\nbuild curl after that with CPPFLAGS/LDFLAGS/PKG_CONFIG_PATH pre-set\n\nExpected outcomes:\n\ncurl configure reports zlib enabled\nstaged runtime works with LD_LIBRARY_PATH=\"$STAGE_PREFIX/lib\""
+  },
+  {
+    "objectID": "posts/2026-03-10-posix-environment-variables.html#practical-rule-of-thumb",
+    "href": "posts/2026-03-10-posix-environment-variables.html#practical-rule-of-thumb",
+    "title": "POSIX environment variables",
+    "section": "Practical Rule of Thumb",
+    "text": "Practical Rule of Thumb\n\nPREFIX: where software is meant to live.\nDESTDIR: where files are staged right now.\nSYSROOT: where compilers/linkers look while building (strict profile).\n\nMake these explicit up front and builds become predictable."
+  },
+  {
+    "objectID": "posts/2026-03-11-crosscompilers-for-platforms.html",
+    "href": "posts/2026-03-11-crosscompilers-for-platforms.html",
+    "title": "Cross-compilers for platforms",
+    "section": "",
+    "text": "some info related to cross-compilation mentioning toolchains and cross-compilers for different platforms"
+  },
+  {
+    "objectID": "posts/2026-03-11-crosscompilers-for-platforms.html#sega",
+    "href": "posts/2026-03-11-crosscompilers-for-platforms.html#sega",
+    "title": "Cross-compilers for platforms",
+    "section": "🎮 Sega",
+    "text": "🎮 Sega\n\nSega Dreamcast\n\ntarget: sh-elf (SuperH SH-4)\ntoolchain: devkitSH4\nSDK: KallistiOS (KOS)"
+  },
+  {
+    "objectID": "posts/2026-03-11-crosscompilers-for-platforms.html#sony",
+    "href": "posts/2026-03-11-crosscompilers-for-platforms.html#sony",
+    "title": "Cross-compilers for platforms",
+    "section": "🖥️ Sony",
+    "text": "🖥️ Sony\n\nPlayStation 2\n\ntarget: mipsel-none-elf\ntoolchain: devkitPS2\nSDK: PS2SDK\n\nPlayStation Portable (PSP)\n\ntarget: mipsel-none-elf\ntoolchain: devkitPSP\nSDK: PSPSDK\n\nPlayStation Vita\n\ntarget: arm-vita-eabi\ntoolchain: vitasdk"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Posts",
+    "section": "",
+    "text": "Mar 11, 2026 ·3 min\n\n\nCross-compilers for platforms\n\n\nsome info related to cross-compilation mentioning toolchains and cross-compilers for different platforms\n\n\n\n\nMar 10, 2026 ·9 min\n\n\nPOSIX environment variables\n\n\nPractical env setup for staged source builds\n\n\n\n\nFeb 10, 2026 ·1 min\n\n\nThis Blog's Setup\n\n\nHow this blog is built: Quarto, custom listing template, full-text search, and a few CSS tweaks.\n\n\n\nmeta\n\n\ntooling\n\n\n\n\n\nJan 28, 2026 ·2 min\n\n\nThinking in Systems\n\n\nWhy the best debugging skill isn't knowing the codebase — it's knowing how to think about moving parts.\n\n\n\nengineering\n\n\nthinking\n\n\n\n\n\nJan 15, 2026 ·1 min\n\n\nHello, World\n\n\nFirst post — what this blog is for and what to expect.\n\n\n\nmeta\n\n\n\n\nNo matching items"
   }
 ]

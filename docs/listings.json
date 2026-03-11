@@ -2,6 +2,8 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/2026-03-11-crosscompilers-for-platforms.html",
+      "/posts/2026-03-10-posix-environment-variables.html",
       "/posts/quarto-setup/index.html",
       "/posts/thinking-in-systems/index.html",
       "/posts/hello-world/index.html"

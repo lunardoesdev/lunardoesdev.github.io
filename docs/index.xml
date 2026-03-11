@@ -9,8 +9,1327 @@
 <link>https://lunardoesdev.github.io/</link>
 <atom:link href="https://lunardoesdev.github.io/index.xml" rel="self" type="application/rss+xml"/>
 <description>Notes on code, systems, and building software.</description>
-<generator>quarto-1.9.23</generator>
-<lastBuildDate>Mon, 09 Feb 2026 14:00:00 GMT</lastBuildDate>
+<generator>quarto-1.8.26</generator>
+<lastBuildDate>Tue, 10 Mar 2026 14:00:00 GMT</lastBuildDate>
+<item>
+  <title>Cross-compilers for platforms</title>
+  <link>https://lunardoesdev.github.io/posts/2026-03-11-crosscompilers-for-platforms.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="about-cross-compilation" class="level1">
+<h1>about-cross-compilation</h1>
+<p>some info related to cross-compilation mentioning toolchains and cross-compilers for different platforms</p>
+</section>
+<section id="linux" class="level1">
+<h1>linux</h1>
+<ul>
+<li>develpoment
+<ul>
+<li>https://toolchains.bootlin.com/ you can download prebuild toolchains including very old ones (click “view all toolchains to see them”)</li>
+<li>zig https://ziglang.org can be used as cross-compilation toolchain and it DOES allow you to select preffered glibc version</li>
+</ul></li>
+<li>running
+<ul>
+<li>well I run linux on my hardware. # windows</li>
+</ul></li>
+<li>development
+<ul>
+<li>mingw package on ubuntu/debian/fedora/anywhere really</li>
+</ul></li>
+<li>running
+<ul>
+<li>wine # macos</li>
+</ul></li>
+<li>development
+<ul>
+<li>https://github.com/tpoechtrager/osxcross</li>
+<li>https://github.com/LcJuves/osx-cross-compiler</li>
+</ul></li>
+<li>running
+<ul>
+<li>https://www.darlinghq.org/ # android</li>
+</ul></li>
+<li>development
+<ul>
+<li>android studio</li>
+<li>https://pypi.org/project/sdkmanager/</li>
+</ul></li>
+<li>running
+<ul>
+<li>I have cheap android device</li>
+<li>emulator if your hadware is good enough</li>
+<li>x86_64 android using waydroid or something similar # ios</li>
+</ul></li>
+<li>development
+<ul>
+<li>https://github.com/xtool-org/xtool</li>
+</ul></li>
+<li>running
+<ul>
+<li>hard qemu setup (but I have weak pc)</li>
+</ul></li>
+</ul>
+</section>
+<section id="web" class="level1">
+<h1>web</h1>
+<ul>
+<li>development
+<ul>
+<li>emscripten</li>
+</ul></li>
+<li>running
+<ul>
+<li>browser</li>
+</ul></li>
+</ul>
+</section>
+<section id="gameboy" class="level1">
+<h1>gameboy</h1>
+<ul>
+<li>development
+<ul>
+<li>https://github.com/gbdk-2020/gbdk-2020/</li>
+<li>https://github.com/bandithedoge/devkitNix</li>
+</ul></li>
+</ul>
+</section>
+<section id="gameboy-advance" class="level1">
+<h1>gameboy advance</h1>
+<ul>
+<li>development
+<ul>
+<li>arm-none-eabi-gcc + libtonc https://github.com/gbadev-org/libtonc</li>
+<li>https://github.com/bandithedoge/devkitNix</li>
+</ul></li>
+</ul>
+</section>
+<section id="nes-nintendo-entertainment-system" class="level1">
+<h1>nes (nintendo entertainment system)</h1>
+<ul>
+<li>development
+<ul>
+<li>https://github.com/gbdk-2020/gbdk-2020/</li>
+</ul></li>
+</ul>
+</section>
+<section id="sega-mega-drive" class="level1">
+<h1>sega mega drive</h1>
+<ul>
+<li>development
+<ul>
+<li>https://github.com/andwn/marsdev</li>
+</ul></li>
+</ul>
+</section>
+<section id="ps-vita" class="level1">
+<h1>ps vita</h1>
+<ul>
+<li>development
+<ul>
+<li>sdk https://github.com/psvsdk/psvsdk</li>
+</ul></li>
+</ul>
+</section>
+<section id="dos" class="level1">
+<h1>dos</h1>
+<ul>
+<li>development
+<ul>
+<li>open-watcom-v2 https://mynixos.com/nixpkgs/package/open-watcom-v2 (or build it from source https://github.com/open-watcom/open-watcom-v2)</li>
+<li>djgpp https://mynixos.com/nixpkgs/package/djgpp (origin https://www.delorie.com/djgpp/)</li>
+</ul></li>
+<li>running
+<ul>
+<li>dosbox-x</li>
+<li>dosbox</li>
+</ul></li>
+</ul>
+</section>
+<section id="devkitpro" class="level1">
+<h1>devkitpro</h1>
+<p>can be installed by https://github.com/bandithedoge/devkitNix supports following targets: ## 🕹️ Nintendo</p>
+<ul>
+<li><p>Game Boy Advance (GBA)</p>
+<ul>
+<li>target: <code>arm-eabi</code></li>
+<li>toolchain: <code>devkitARM</code></li>
+</ul></li>
+<li><p>Nintendo DS (NDS)</p>
+<ul>
+<li>target: <code>arm-eabi</code> (dual-core ARM7/ARM9)</li>
+<li>toolchain: <code>devkitARM</code></li>
+</ul></li>
+<li><p>Nintendo 3DS</p>
+<ul>
+<li>target: <code>arm-none-eabi</code> (ARM11 + ARM9)</li>
+<li>toolchain: <code>devkitARM</code> + специфичные библиотеки (<code>libctru</code>)</li>
+</ul></li>
+<li><p>Nintendo Switch</p>
+<ul>
+<li>target: <code>aarch64-none-elf</code></li>
+<li>toolchain: <code>devkitA64</code></li>
+<li>SDK: <code>libnx</code></li>
+</ul></li>
+</ul>
+<hr>
+<section id="sega" class="level2">
+<h2 class="anchored" data-anchor-id="sega">🎮 Sega</h2>
+<ul>
+<li>Sega Dreamcast
+<ul>
+<li>target: <code>sh-elf</code> (SuperH SH-4)</li>
+<li>toolchain: <code>devkitSH4</code></li>
+<li>SDK: <code>KallistiOS (KOS)</code></li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="sony" class="level2">
+<h2 class="anchored" data-anchor-id="sony">🖥️ Sony</h2>
+<ul>
+<li><p>PlayStation 2</p>
+<ul>
+<li>target: <code>mipsel-none-elf</code></li>
+<li>toolchain: <code>devkitPS2</code></li>
+<li>SDK: <code>PS2SDK</code></li>
+</ul></li>
+<li><p>PlayStation Portable (PSP)</p>
+<ul>
+<li>target: <code>mipsel-none-elf</code></li>
+<li>toolchain: <code>devkitPSP</code></li>
+<li>SDK: <code>PSPSDK</code></li>
+</ul></li>
+<li><p>PlayStation Vita</p>
+<ul>
+<li>target: <code>arm-vita-eabi</code></li>
+<li>toolchain: <code>vitasdk</code></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="gbdk-2020" class="level1">
+<h1>gbdk-2020</h1>
+<p>https://github.com/gbdk-2020/gbdk-2020/</p>
+<p>Supported Consoles: <a href="https://gbdk.org/docs/api/docs_supported_consoles.html">(see docs)</a></p>
+<ul>
+<li>Nintendo Game Boy / Game Boy Color</li>
+<li>Analogue Pocket</li>
+<li>Sega Master System &amp; Game Gear</li>
+<li>Mega Duck / Cougar Boy</li>
+<li>NES</li>
+</ul>
+</section>
+<section id="using-zig-for-xmake-cross-compilaiton-with-choosing-glibc-version" class="level1">
+<h1>using zig for xmake cross-compilaiton with choosing glibc version</h1>
+<pre><code>xmake f -p cross --toolchain=zig --cross=x86_64-linux-gnu.2.22
+xmake build</code></pre>
+
+
+</section>
+
+ ]]></description>
+  <guid>https://lunardoesdev.github.io/posts/2026-03-11-crosscompilers-for-platforms.html</guid>
+  <pubDate>Tue, 10 Mar 2026 14:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>POSIX environment variables</title>
+  <link>https://lunardoesdev.github.io/posts/2026-03-10-posix-environment-variables.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>This post is about making staged source builds predictable with pre-set environment variables.</p>
+<p>If you keep install prefix, staging root, and compiler sysroot separate, most build behavior becomes easy to reason about.</p>
+<section id="prefix-destdir-sysroot" class="level2">
+<h2 class="anchored" data-anchor-id="prefix-destdir-sysroot"><code>PREFIX</code>, <code>DESTDIR</code>, <code>SYSROOT</code></h2>
+<ul>
+<li><code>PREFIX</code> is the logical install location in the final target filesystem layout (<code>/usr</code>, <code>/usr/local</code>, <code>/opt/foo</code>, …).</li>
+<li><code>DESTDIR</code> is a temporary staging root prepended only during install.</li>
+<li><code>SYSROOT</code> (compiler/linker concept, typically used as <code>--sysroot=/path</code>) remaps where headers and libraries are searched while building.</li>
+</ul>
+<p>Think in concrete paths:</p>
+<ul>
+<li><p><code>STAGE_PREFIX</code> in this post is a helper variable we define as <code>STAGE_PREFIX="$DESTDIR$PREFIX"</code> for readability.</p></li>
+<li><p>intended path in the final system: <code>$PREFIX/bin/foo</code></p></li>
+<li><p>path where files are staged right now: <code>$STAGE_PREFIX/bin/foo</code></p></li>
+</ul>
+<p>If <code>PREFIX=/usr</code> and <code>DESTDIR=/tmp/buildroot</code>, installing <code>foo</code> goes to <code>/tmp/buildroot/usr/bin/foo</code>, but the package still records its logical prefix as <code>/usr</code>.</p>
+<p>That is the core difference:</p>
+<ul>
+<li><code>PREFIX</code> changes package layout/metadata semantics.</li>
+<li><code>DESTDIR</code> changes only where install writes files.</li>
+</ul>
+</section>
+<section id="why-sysroot-matters-and-when--i-l-is-not-enough" class="level2">
+<h2 class="anchored" data-anchor-id="why-sysroot-matters-and-when--i-l-is-not-enough">Why <code>SYSROOT</code> matters (and when <code>-I</code>/<code>-L</code> is not enough)</h2>
+<p><code>SYSROOT</code> gives the compiler and linker a coherent alternate root for “system” headers and libraries.</p>
+<p>Without <code>SYSROOT</code>, build checks can silently mix host and staged artifacts (for example, header from host <code>/usr/include</code>, library from <code>$STAGE_PREFIX/lib</code>), which causes non-reproducible builds.</p>
+<p>Can you replace <code>SYSROOT</code> with manual include/lib flags?</p>
+<ul>
+<li>Partially, for simple cases: <code>-I...</code> and <code>-L...</code> can point to custom dirs.</li>
+<li>Not fully, for isolation: <code>--sysroot</code> also redirects built-in default system search behavior.</li>
+<li><code>-isystem</code> is like <code>-I</code> with different warning/ordering semantics for headers; it still does not replace full sysroot behavior.</li>
+<li>There is no <code>-lsystem</code> flag; <code>-lfoo</code> only selects a library name, while search roots come from <code>-L...</code>, toolchain defaults, and/or <code>--sysroot</code>.</li>
+</ul>
+<p>Rule of thumb:</p>
+<ul>
+<li>Native staged builds: use <code>-I</code>/<code>-isystem</code>/<code>-L</code> + pkg-config path control.</li>
+<li>Strict SDK/cross builds: use <code>--sysroot</code> (with a complete sysroot).</li>
+</ul>
+<p>Important practical constraint:</p>
+<ul>
+<li><code>--sysroot=$SYSROOT</code> only works if <code>$SYSROOT</code> is a real sysroot (crt objects, libc headers, libc, linker files, etc.).</li>
+<li>If your staging tree only contains third-party deps, a strict compiler sysroot usually breaks native builds.</li>
+</ul>
+</section>
+<section id="baseline-build-environment" class="level2">
+<h2 class="anchored" data-anchor-id="baseline-build-environment">Baseline Build Environment</h2>
+<p><code>CPPFLAGS</code> means C preprocessor flags. Despite the name, it is used for both C and C++ compilation (for example include paths and preprocessor defines).</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">DESTDIR</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$PWD</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/stage"</span></span>
+<span id="cb1-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">PREFIX</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"/usr/local"</span></span>
+<span id="cb1-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">STAGE_PREFIX</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$DESTDIR$PREFIX</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb1-4"></span>
+<span id="cb1-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mkdir</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-p</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$STAGE_PREFIX</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb1-6"></span>
+<span id="cb1-7"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">CC</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>cc</span>
+<span id="cb1-8"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">CXX</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>c++</span>
+<span id="cb1-9"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">CFLAGS</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"-O2 -pipe"</span></span>
+<span id="cb1-10"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">CXXFLAGS</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$CFLAGS</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb1-11"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">CPPFLAGS</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"-I</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$STAGE_PREFIX</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/include"</span></span>
+<span id="cb1-12"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">LDFLAGS</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"-L</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$STAGE_PREFIX</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/lib"</span></span>
+<span id="cb1-13"></span>
+<span id="cb1-14"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Use staged .pc files first</span></span>
+<span id="cb1-15"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">PKG_CONFIG_PATH</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$STAGE_PREFIX</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/lib/pkgconfig:</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$STAGE_PREFIX</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/share/pkgconfig"</span></span>
+<span id="cb1-16"></span>
+<span id="cb1-17"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">MAKEFLAGS</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"-j1"</span></span></code></pre></div></div>
+<p>Then run builds without repeating path flags:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">./configure</span></span>
+<span id="cb2-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">make</span></span>
+<span id="cb2-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">make</span> install</span></code></pre></div></div>
+<p>For this to work, the project must honor env-driven install variables (<code>PREFIX</code> and <code>DESTDIR</code>) or load them via project config glue (<code>CONFIG_SITE</code>, toolchain files, etc.). <code>DESTDIR</code> support is common; <code>PREFIX</code> support is common in Make-style projects but not universal.</p>
+<p>Some legacy projects only read lowercase <code>prefix</code>. For those, add <code>export prefix="$PREFIX"</code> once.</p>
+<p>If a project ignores <code>PREFIX</code> from env and defaults to <code>/usr/local</code>, either:</p>
+<ul>
+<li>keep <code>PREFIX=/usr/local</code>, or</li>
+<li>add project glue once (for example <code>CONFIG_SITE</code>) so env <code>PREFIX</code> is propagated.</li>
+</ul>
+</section>
+<section id="build-systems" class="level2">
+<h2 class="anchored" data-anchor-id="build-systems">Build Systems</h2>
+<p>Common build systems you will see in source builds:</p>
+<ul>
+<li>Autotools (<code>configure</code> + <code>make</code>)</li>
+<li>CMake</li>
+<li>Meson</li>
+<li>Xmake</li>
+<li>qmake</li>
+</ul>
+<p>Portable env subset understood across these systems (directly or through their compiler invocation layer):</p>
+<ul>
+<li><code>CC</code>: C compiler command</li>
+<li><code>CXX</code>: C++ compiler command</li>
+<li><code>CPPFLAGS</code>: preprocessor flags (include paths, defines) for C and C++</li>
+<li><code>CFLAGS</code>: C compile flags</li>
+<li><code>CXXFLAGS</code>: C++ compile flags</li>
+<li><code>LDFLAGS</code>: link flags</li>
+</ul>
+<p>Practical notes:</p>
+<ul>
+<li>Set these before configure/setup (first CMake/Meson configure is especially important).</li>
+<li>System-specific install-prefix variables are not fully uniform across all five systems (<code>PREFIX</code>, <code>CMAKE_INSTALL_PREFIX</code>, Meson <code>--prefix</code>, qmake variables, etc.).</li>
+<li>Treat compiler/linker flags as the common denominator; treat install-prefix controls as build-system-specific.</li>
+</ul>
+<section id="autotools" class="level3">
+<h3 class="anchored" data-anchor-id="autotools">Autotools</h3>
+<ul>
+<li>Core env: <code>CC</code>, <code>CXX</code>, <code>CPPFLAGS</code>, <code>CFLAGS</code>, <code>CXXFLAGS</code>, <code>LDFLAGS</code>, <code>PKG_CONFIG_PATH</code>, <code>DESTDIR</code>.</li>
+<li>Prefix/install knobs: usually <code>./configure --prefix=...</code> and <code>make install DESTDIR=...</code> (some projects also honor env <code>PREFIX</code>/<code>prefix</code>).</li>
+<li>Cross knobs: <code>--host</code> (where output runs), <code>--build</code> (where compile happens), plus target <code>AR</code>/<code>RANLIB</code>/<code>STRIP</code> for target archives/binaries.</li>
+</ul>
+</section>
+<section id="cmake" class="level3">
+<h3 class="anchored" data-anchor-id="cmake">CMake</h3>
+<ul>
+<li>Compiler env (first configure): <code>CC</code>, <code>CXX</code>, <code>CPPFLAGS</code>, <code>CFLAGS</code>, <code>CXXFLAGS</code>, <code>LDFLAGS</code>.</li>
+<li>Install/staging: <code>CMAKE_INSTALL_PREFIX</code> (via <code>-D</code>) and <code>DESTDIR</code> for staging at install time.</li>
+<li>Common CMake path variables used by discovery logic:
+<ul>
+<li><code>CMAKE_PREFIX_PATH</code>: extra install prefixes searched by <code>find_package</code>, <code>find_library</code>, <code>find_path</code>, etc.</li>
+<li><code>CMAKE_INCLUDE_PATH</code>: additional header search roots for <code>find_path</code>/<code>find_file</code>.</li>
+<li><code>CMAKE_LIBRARY_PATH</code>: additional library search roots for <code>find_library</code>.</li>
+<li><code>CMAKE_PROGRAM_PATH</code>: additional executable search roots for <code>find_program</code>.</li>
+<li><code>CMAKE_FRAMEWORK_PATH</code>: extra macOS framework roots for framework discovery.</li>
+<li><code>CMAKE_APPBUNDLE_PATH</code>: extra macOS app bundle roots used by <code>find_program</code>.</li>
+</ul></li>
+<li>Other useful CMake variables in strict/large projects:
+<ul>
+<li><code>CMAKE_MAXIMUM_RECURSION_DEPTH</code>: limit for recursive script/module processing.</li>
+<li><code>CMAKE_POLICY_VERSION_MINIMUM</code>: minimum policy version baseline for policy behavior.</li>
+</ul></li>
+</ul>
+</section>
+<section id="meson" class="level3">
+<h3 class="anchored" data-anchor-id="meson">Meson</h3>
+<ul>
+<li>Core env: <code>CC</code>, <code>CXX</code>, <code>CPPFLAGS</code>, <code>CFLAGS</code>, <code>CXXFLAGS</code>, <code>LDFLAGS</code>, <code>PKG_CONFIG_PATH</code>, <code>DESTDIR</code>.</li>
+<li>Prefix/install knobs: <code>meson setup --prefix=...</code> (or <code>-Dprefix=...</code>), then <code>DESTDIR=... meson install</code>.</li>
+<li>Cross knobs: cross/native files (<code>binaries</code> selects toolchain commands, <code>properties</code> carries sysroot/pkg-config details, <code>host_machine</code> declares target machine).</li>
+</ul>
+</section>
+<section id="xmake" class="level3">
+<h3 class="anchored" data-anchor-id="xmake">Xmake</h3>
+<ul>
+<li>Common env accepted through toolchain/compiler layer: <code>CC</code>, <code>CXX</code>, <code>CPPFLAGS</code>, <code>CFLAGS</code>, <code>CXXFLAGS</code>, <code>LDFLAGS</code>.</li>
+<li>Prefix/install behavior is project and rule dependent; often configured via xmake options/toolchain config rather than a single universal env variable.</li>
+</ul>
+</section>
+<section id="qmake" class="level3">
+<h3 class="anchored" data-anchor-id="qmake">qmake</h3>
+<ul>
+<li>Common env in many projects: <code>CC</code>, <code>CXX</code>, <code>CFLAGS</code>, <code>CXXFLAGS</code>, <code>LDFLAGS</code>.</li>
+<li>Prefix/install usually comes from qmake/project variables (<code>target.path</code>, install sets) rather than plain <code>PREFIX</code>.</li>
+<li>Cross builds are usually driven by mkspec/toolchain selection plus target binutils variables.</li>
+</ul>
+</section>
+<section id="universal-naming-hint" class="level3">
+<h3 class="anchored" data-anchor-id="universal-naming-hint">Universal naming hint</h3>
+<p>If you want one shell profile that works across mixed build systems, keep canonical values in your own variables and map them outward:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">PREFIX</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"/usr/local"</span></span>
+<span id="cb3-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">DESTDIR</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$PWD</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/stage"</span></span>
+<span id="cb3-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">STAGE_PREFIX</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$DESTDIR$PREFIX</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb3-4"></span>
+<span id="cb3-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Common compiler/link flags (portable subset)</span></span>
+<span id="cb3-6"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">CPPFLAGS</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"-I</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$STAGE_PREFIX</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/include"</span></span>
+<span id="cb3-7"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">LDFLAGS</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"-L</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$STAGE_PREFIX</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/lib"</span></span>
+<span id="cb3-8"></span>
+<span id="cb3-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Optional compatibility aliases for projects that expect lowercase names</span></span>
+<span id="cb3-10"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">prefix</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$PREFIX</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span></code></pre></div></div>
+<p>Then map into each system’s native prefix knobs only where needed (for example <code>--prefix</code> for Autotools/Meson, <code>CMAKE_INSTALL_PREFIX</code> for CMake).</p>
+</section>
+</section>
+<section id="strict-sysroot-profile-optional" class="level2">
+<h2 class="anchored" data-anchor-id="strict-sysroot-profile-optional">Strict Sysroot Profile (Optional)</h2>
+<p>If you are doing a true cross/SDK build with a complete sysroot, then add:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">SYSROOT</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"/opt/my-sdk-sysroot"</span></span>
+<span id="cb4-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">CC</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"cc --sysroot=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$SYSROOT</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb4-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">CXX</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"c++ --sysroot=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$SYSROOT</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb4-4"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">PKG_CONFIG_SYSROOT_DIR</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$SYSROOT</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb4-5"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">PKG_CONFIG_LIBDIR</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$SYSROOT</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/usr/lib/pkgconfig:</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$SYSROOT</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/usr/share/pkgconfig"</span></span></code></pre></div></div>
+<p>In this profile, <code>DESTDIR</code> and <code>SYSROOT</code> are different things:</p>
+<ul>
+<li><code>DESTDIR</code>: where install writes staged files</li>
+<li><code>SYSROOT</code>: prebuilt SDK/toolchain root used by compiler/linker</li>
+</ul>
+<p>Do not treat <code>--sysroot</code> as a drop-in replacement for <code>-I</code>/<code>-L</code> in native builds unless that sysroot is fully populated.</p>
+<section id="do-build-systems-read-sysroot-automatically" class="level3">
+<h3 class="anchored" data-anchor-id="do-build-systems-read-sysroot-automatically">Do build systems read <code>SYSROOT</code> automatically?</h3>
+<p>Usually, no. Build systems mostly honor sysroot through their own options or through compiler flags.</p>
+<ul>
+<li>Autotools: no universal <code>SYSROOT</code> env convention; pass sysroot via <code>CC</code>/<code>CXX</code> (or <code>CFLAGS</code>/<code>LDFLAGS</code>) and use <code>--host</code>.</li>
+<li>CMake: use <code>CMAKE_SYSROOT</code> (typically in a toolchain file).</li>
+<li>Meson: use a cross file (<code>[properties] sys_root=...</code>).</li>
+<li>pkg-config: uses <code>PKG_CONFIG_SYSROOT_DIR</code> (fixed variable name).</li>
+</ul>
+<p>So if your project/build system already maps a <code>SYSROOT</code> environment variable internally, you do not need to duplicate <code>--sysroot=$SYSROOT</code> in <code>CC</code>.</p>
+</section>
+</section>
+<section id="cross-compilation" class="level2">
+<h2 class="anchored" data-anchor-id="cross-compilation">Cross-Compilation</h2>
+<p>For cross builds, keep five things aligned: target compiler, binutils tools, target sysroot/libc, pkg-config search, and configure triplets.</p>
+<p>Typical setup:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">TARGET</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"aarch64-linux-gnu"</span></span>
+<span id="cb5-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">SYSROOT</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"/opt/sdk/</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$TARGET</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/sysroot"</span></span>
+<span id="cb5-3"></span>
+<span id="cb5-4"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">CC</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$TARGET</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">-gcc --sysroot=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$SYSROOT</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb5-5"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">CXX</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$TARGET</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">-g++ --sysroot=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$SYSROOT</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb5-6"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">AR</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$TARGET</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">-ar"</span></span>
+<span id="cb5-7"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">RANLIB</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$TARGET</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">-ranlib"</span></span>
+<span id="cb5-8"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">STRIP</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$TARGET</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">-strip"</span></span>
+<span id="cb5-9"></span>
+<span id="cb5-10"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">PKG_CONFIG_SYSROOT_DIR</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$SYSROOT</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb5-11"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">PKG_CONFIG_LIBDIR</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$SYSROOT</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/usr/lib/pkgconfig:</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$SYSROOT</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/usr/share/pkgconfig"</span></span>
+<span id="cb5-12"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">unset</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">PKG_CONFIG_PATH</span></span></code></pre></div></div>
+<p>Why <code>AR</code>/<code>RANLIB</code>/<code>STRIP</code> matter:</p>
+<ul>
+<li>Libraries built during cross compilation must be archived and indexed by target tools, not host tools.</li>
+<li>If you forget these, builds may appear to succeed but produce unusable target artifacts.</li>
+</ul>
+<p>With Autotools, pass host/build correctly:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">./configure</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--build</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$(</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">uname</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-m</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">)</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">-pc-linux-gnu"</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--host</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$TARGET</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb6-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">make</span></span>
+<span id="cb6-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">make</span> install</span></code></pre></div></div>
+<p>Notes:</p>
+<ul>
+<li><code>--host</code> is the machine that will run the output binaries.</li>
+<li><code>--build</code> is the machine doing the compilation.</li>
+<li>In cross mode, configure tests that run binaries on the build machine are often skipped or require cache overrides.</li>
+<li><code>DESTDIR</code> still means staging root; it is independent from cross vs native.</li>
+</ul>
+<section id="clang-cross-portable-method" class="level3">
+<h3 class="anchored" data-anchor-id="clang-cross-portable-method">Clang Cross (portable method)</h3>
+<p>When using plain Clang for cross builds, <code>--target</code> is necessary but often not sufficient. A portable approach is: discover paths from <code>$TARGET-gcc</code>, then feed them to Clang.</p>
+<p>Discovery commands:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">TARGET</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"aarch64-linux-gnu"</span></span>
+<span id="cb7-2"><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">TARGET_CC</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">${TARGET}</span>-gcc</span>
+<span id="cb7-3"><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">TARGET_AR</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">${TARGET}</span>-ar</span>
+<span id="cb7-4"></span>
+<span id="cb7-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Cross compiler and binutils</span></span>
+<span id="cb7-6"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">command</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-v</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$TARGET_CC</span></span>
+<span id="cb7-7"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">command</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-v</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$TARGET_AR</span></span>
+<span id="cb7-8"></span>
+<span id="cb7-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Sysroot and toolchain search dirs</span></span>
+<span id="cb7-10"><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$TARGET_CC</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-print-sysroot</span></span>
+<span id="cb7-11"><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$TARGET_CC</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-print-search-dirs</span></span>
+<span id="cb7-12"><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$TARGET_CC</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-print-file-name</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>crt1.o</span>
+<span id="cb7-13"><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$TARGET_CC</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-print-file-name</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>libgcc.a</span></code></pre></div></div>
+<p>Then wire Clang manually:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">SYSROOT</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$($TARGET_CC</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-print-sysroot</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb8-2"><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">TARGET_GCC</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$(</span><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">command</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-v</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$TARGET_CC)</span></span>
+<span id="cb8-3"><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">TARGET_GCC_DIR</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$(</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">dirname</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$TARGET_GCC)</span></span>
+<span id="cb8-4"><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">GCC_TOOLCHAIN</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$(</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">dirname</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$TARGET_GCC_DIR)</span></span>
+<span id="cb8-5"></span>
+<span id="cb8-6"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">CC</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"clang --target=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$TARGET</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> --sysroot=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$SYSROOT</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> --gcc-toolchain=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$GCC_TOOLCHAIN</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb8-7"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">CXX</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"clang++ --target=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$TARGET</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> --sysroot=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$SYSROOT</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> --gcc-toolchain=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$GCC_TOOLCHAIN</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb8-8"></span>
+<span id="cb8-9"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">AR</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">${TARGET}</span>-ar</span>
+<span id="cb8-10"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">RANLIB</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">${TARGET}</span>-ranlib</span>
+<span id="cb8-11"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">STRIP</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">${TARGET}</span>-strip</span></code></pre></div></div>
+<p>If linking still fails (missing <code>crt1.o</code>, <code>crti.o</code>, <code>libgcc_s</code>, etc.), add explicit include/library hints from your toolchain output:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">CPPFLAGS</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$CPPFLAGS</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> -isystem </span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$SYSROOT</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/usr/include"</span></span>
+<span id="cb9-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">LDFLAGS</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$LDFLAGS</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> -L</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$SYSROOT</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/usr/lib -Wl,-rpath-link,</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$SYSROOT</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/usr/lib"</span></span></code></pre></div></div>
+<p>Keep <code>PKG_CONFIG_SYSROOT_DIR</code>/<code>PKG_CONFIG_LIBDIR</code> aligned with the same target sysroot so dependency checks and linker behavior agree.</p>
+</section>
+</section>
+<section id="pkg_config_sysroot_dir-and-multiple-roots" class="level2">
+<h2 class="anchored" data-anchor-id="pkg_config_sysroot_dir-and-multiple-roots"><code>PKG_CONFIG_SYSROOT_DIR</code> and Multiple Roots</h2>
+<p><code>PKG_CONFIG_SYSROOT_DIR</code> supports one sysroot, not a list.</p>
+<ul>
+<li>valid: <code>PKG_CONFIG_SYSROOT_DIR=/path/to/root</code></li>
+<li>not valid: <code>PKG_CONFIG_SYSROOT_DIR=/rootA:/rootB</code></li>
+</ul>
+<p>To search multiple dependency locations, use ordered <code>PKG_CONFIG_LIBDIR</code> / <code>PKG_CONFIG_PATH</code> entries instead.</p>
+</section>
+<section id="compiler-native-path-variables" class="level2">
+<h2 class="anchored" data-anchor-id="compiler-native-path-variables">Compiler-Native Path Variables</h2>
+<p>Besides <code>CPPFLAGS</code>/<code>LDFLAGS</code>, compilers also read environment path variables directly:</p>
+<ul>
+<li><code>CPATH</code>, <code>C_INCLUDE_PATH</code>, <code>CPLUS_INCLUDE_PATH</code>: extra header search paths.</li>
+<li><code>LIBRARY_PATH</code>: extra library search paths at link time.</li>
+<li><code>GCC_EXEC_PREFIX</code> / <code>COMPILER_PATH</code>: where GCC looks for internal tools/components.</li>
+</ul>
+<p>Use these carefully:</p>
+<ul>
+<li>Helpful for quick local builds and toolchain wrappers.</li>
+<li>Less portable across compilers and build systems than explicit flags (<code>CPPFLAGS</code>, <code>LDFLAGS</code>) and pkg-config.</li>
+<li><code>GCC_EXEC_PREFIX</code> is GCC-specific; Clang may ignore it.</li>
+</ul>
+<p>Practical default: use <code>CPPFLAGS</code>/<code>LDFLAGS</code>/pkg-config first, add compiler-native vars only when you specifically need them.</p>
+</section>
+<section id="case-1-discover-only-dependencies-in-destdir" class="level2">
+<h2 class="anchored" data-anchor-id="case-1-discover-only-dependencies-in-destdir">Case 1: Discover only dependencies in <code>$DESTDIR</code></h2>
+<p>Goal: package B should find package A already staged in <code>$DESTDIR</code>, and fail if only host <code>/usr</code> provides it.</p>
+<p>Use:</p>
+<ul>
+<li><code>CPPFLAGS</code>/<code>LDFLAGS</code> that point only at <code>$STAGE_PREFIX/include</code> and <code>$STAGE_PREFIX/lib</code></li>
+<li><code>PKG_CONFIG_PATH</code>/<code>PKG_CONFIG_LIBDIR</code> containing only <code>$STAGE_PREFIX</code> pkg-config dirs</li>
+<li>optional strict mode: <code>--sysroot=$SYSROOT</code> only when <code>$SYSROOT</code> is a complete sysroot</li>
+</ul>
+<p>This creates an isolated build view for headers, libs, and <code>.pc</code> metadata.</p>
+</section>
+<section id="case-2-discover-both-destdir-and-external-external_prefix" class="level2">
+<h2 class="anchored" data-anchor-id="case-2-discover-both-destdir-and-external-external_prefix">Case 2: Discover both <code>$DESTDIR</code> and external <code>$EXTERNAL_PREFIX</code></h2>
+<p>Sometimes you want staged artifacts first, then fallback to an external prefix like <code>/opt/sdk</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">EXTERNAL_PREFIX</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"/opt/sdk"</span></span>
+<span id="cb10-2"></span>
+<span id="cb10-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># DESTDIR stage first, external fallback second</span></span>
+<span id="cb10-4"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">CPPFLAGS</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"-I</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$STAGE_PREFIX</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/include -I</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$EXTERNAL_PREFIX</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/include"</span></span>
+<span id="cb10-5"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">LDFLAGS</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"-L</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$STAGE_PREFIX</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/lib -L</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$EXTERNAL_PREFIX</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/lib"</span></span>
+<span id="cb10-6"></span>
+<span id="cb10-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Order defines precedence for .pc discovery</span></span>
+<span id="cb10-8"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">PKG_CONFIG_LIBDIR</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$STAGE_PREFIX</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/lib/pkgconfig:</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$STAGE_PREFIX</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/share/pkgconfig:</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$EXTERNAL_PREFIX</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/lib/pkgconfig:</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$EXTERNAL_PREFIX</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/share/pkgconfig"</span></span></code></pre></div></div>
+<p>If you also use strict sysroot mode, <code>PKG_CONFIG_SYSROOT_DIR</code> still stays single-valued. Multi-location behavior comes from ordered <code>PKG_CONFIG_LIBDIR</code>.</p>
+</section>
+<section id="case-3-runtime-dependencies-when-launching-what-you-built" class="level2">
+<h2 class="anchored" data-anchor-id="case-3-runtime-dependencies-when-launching-what-you-built">Case 3: Runtime dependencies when launching what you built</h2>
+<p>Build-time discovery (<code>CPPFLAGS</code>, <code>LDFLAGS</code>, <code>pkg-config</code>) is separate from runtime loader behavior.</p>
+<p>Common runtime choices:</p>
+<ol type="1">
+<li><p>Run from staging with <code>LD_LIBRARY_PATH</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">LD_LIBRARY_PATH</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$STAGE_PREFIX</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/lib"</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$STAGE_PREFIX</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/bin/myapp"</span></span></code></pre></div></div>
+<p>If you also need external fallback:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">LD_LIBRARY_PATH</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$STAGE_PREFIX</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/lib:</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$EXTERNAL_PREFIX</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/lib"</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$STAGE_PREFIX</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/bin/myapp"</span></span></code></pre></div></div></li>
+<li><p>Embed RUNPATH/RPATH at link time:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">LDFLAGS</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">$LDFLAGS</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> -Wl,-rpath,/usr/lib"</span></span>
+<span id="cb13-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># relocatable layout option: -Wl,-rpath,'$ORIGIN/../lib'</span></span></code></pre></div></div></li>
+<li><p>Install to final system locations and rely on system loader config (<code>ldconfig</code>, distro defaults).</p></li>
+</ol>
+<p>If build steps execute just-built binaries (tests, code generators), you usually need either <code>LD_LIBRARY_PATH</code> in the build environment or an embedded RUNPATH.</p>
+</section>
+<section id="validation-example-two-dependent-packages" class="level2">
+<h2 class="anchored" data-anchor-id="validation-example-two-dependent-packages">Validation Example (Two Dependent Packages)</h2>
+<p>Using the baseline profile above (<code>MAKEFLAGS=-j1</code>), one working pair is:</p>
+<ol type="1">
+<li>build/install zlib into <code>$STAGE_PREFIX</code></li>
+<li>build curl after that with <code>CPPFLAGS</code>/<code>LDFLAGS</code>/<code>PKG_CONFIG_PATH</code> pre-set</li>
+</ol>
+<p>Expected outcomes:</p>
+<ul>
+<li>curl configure reports zlib enabled</li>
+<li>staged runtime works with <code>LD_LIBRARY_PATH="$STAGE_PREFIX/lib"</code></li>
+</ul>
+</section>
+<section id="practical-rule-of-thumb" class="level2">
+<h2 class="anchored" data-anchor-id="practical-rule-of-thumb">Practical Rule of Thumb</h2>
+<ul>
+<li><code>PREFIX</code>: where software is meant to live.</li>
+<li><code>DESTDIR</code>: where files are staged right now.</li>
+<li><code>SYSROOT</code>: where compilers/linkers look while building (strict profile).</li>
+</ul>
+<p>Make these explicit up front and builds become predictable.</p>
+
+
+</section>
+
+ ]]></description>
+  <guid>https://lunardoesdev.github.io/posts/2026-03-10-posix-environment-variables.html</guid>
+  <pubDate>Mon, 09 Mar 2026 14:00:00 GMT</pubDate>
+</item>
 <item>
   <title>This Blog’s Setup</title>
   <link>https://lunardoesdev.github.io/posts/quarto-setup/</link>
