@@ -9,8 +9,25 @@
 <link>https://lunardoesdev.github.io/</link>
 <atom:link href="https://lunardoesdev.github.io/index.xml" rel="self" type="application/rss+xml"/>
 <description>Notes on code, systems, and building software.</description>
-<generator>quarto-1.8.26</generator>
-<lastBuildDate>Tue, 10 Mar 2026 14:00:00 GMT</lastBuildDate>
+<generator>quarto-1.9.36</generator>
+<lastBuildDate>Tue, 24 Mar 2026 14:00:00 GMT</lastBuildDate>
+<item>
+  <title>Creating my own Linux distribution</title>
+  <link>https://lunardoesdev.github.io/posts/2026-03-25-mintfused-linux-distro.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Well, I made my first Linux distribution based on Linux Mint! The resulting ISO file turned out to be around 16 gigabytes, so I didn’t upload the file itself to the internet. However, I have documented the entire respin process very well here: https://github.com/lunardoesdev/mintfused</p>
+<p>Create your own Linux distributions! It’s fun.</p>
+
+
+
+ ]]></description>
+  <guid>https://lunardoesdev.github.io/posts/2026-03-25-mintfused-linux-distro.html</guid>
+  <pubDate>Tue, 24 Mar 2026 14:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Cross-compilers for platforms</title>
   <link>https://lunardoesdev.github.io/posts/2026-03-11-crosscompilers-for-platforms.html</link>

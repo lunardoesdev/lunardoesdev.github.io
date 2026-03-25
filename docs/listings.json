@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/2026-03-25-mintfused-linux-distro.html",
       "/posts/2026-03-11-crosscompilers-for-platforms.html",
       "/posts/2026-03-10-posix-environment-variables.html",
       "/posts/quarto-setup/index.html",

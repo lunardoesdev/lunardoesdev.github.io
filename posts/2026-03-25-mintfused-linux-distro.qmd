@@ -1,0 +1,9 @@
+---
+title: "Creating my own Linux distribution"
+description: "How I made a custom Linux Mint respin called mintfused and why you should try making your own distro."
+date: "2026-03-25"
+---
+
+Well, I made my first Linux distribution based on Linux Mint! The resulting ISO file turned out to be around 16 gigabytes, so I didn't upload the file itself to the internet. However, I have documented the entire respin process very well here: https://github.com/lunardoesdev/mintfused
+
+Create your own Linux distributions! It's fun.
